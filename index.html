@@ -73,18 +73,17 @@
                             <span class="author-block"><sup>3</sup>Johns Hopkins Univeristy</span>
                         </div>
 
-                        <!-- <div class="column has-text-centered">
+                        <div class="column has-text-centered">
                             <div class="publication-links">
                                 <span class="link-block">
-                                    <a href="https://arxiv.org/pdf/2412.00578"
-                                        class="external-link button is-normal is-rounded is-dark">
+                                    <a href="" class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="fas fa-file-pdf"></i>
                                         </span>
-                                        <span>Paper</span>
+                                        <span>Coming Soon!</span>
                                     </a>
                                 </span>
-                                <span class="link-block">
+                                <!-- <span class="link-block">
                                     <a href="https://arxiv.org/abs/2412.00578"
                                         class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
@@ -101,9 +100,9 @@
                                         </span>
                                         <span>Code</span>
                                     </a>
-                                </span>
+                                </span> -->
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,10 +121,49 @@
         <div class="container is-max-desktop">
             <div class="columns is-centered has-text-centered">
                 <div class="column is-four-fifths">
-                    <h2 class="title is-3">Coming Soon!</h2>
+                    <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
+                            Face recognition in unconstrained environments such as surveillance, video, and web imagery
+                            must contend with extreme variation in pose, blur, illumination, and occlusion, where
+                            conventional visual quality metrics fail to predict whether inputs are truly recognizable to
+                            the deployed encoder. Existing FIQA methods typically rely on visual heuristics, curated
+                            annotations, or computationally intensive generative pipelines, leaving their predictions
+                            detached from the encoder's decision geometry. We introduce <b>TransFIRA (Transfer
+                                Learning for Face Image Recognizability Assessment)</b>, a lightweight and
+                            annotation-free framework that grounds recognizability directly in embedding space.
+                        </p>
 
+                        <p>TransFIRA delivers three advances:</p>
+                        <ol style="text-align: justify; list-style-type: lower-roman;">
+                            <li>
+                                A definition of recognizability via <b>class-center similarity (CCS)</b> and
+                                <b>class-center angular separation (CCAS)</b>, yielding the first natural,
+                                decision-boundary-aligned criterion for filtering and weighting.
+                            </li>
+                            <li>
+                                A <b>recognizability-informed aggregation strategy</b> that achieves state-of-the-art
+                                verification
+                                accuracy on BRIAR and IJB-C while nearly doubling correlation with true recognizability,
+                                all
+                                without external labels, heuristics, or backbone-specific training.
+                            </li>
+                            <li>
+                                New extensions beyond faces, including <b>encoder-grounded explainability</b> that
+                                reveals how
+                                degradations and subject-specific factors affect recognizability, and the first
+                                <b>recognizability-aware body recognition assessment</b>.
+                            </li>
+                        </ol>
+
+                        <p>
+                            Experiments confirm state-of-the-art results on faces, strong performance on body
+                            recognition,
+                            and robustness under cross-dataset shifts. Together, <b>these contributions establish
+                                TransFIRA as a unified, geometry-driven framework for recognizability assessment</b> —
+                            encoder-specific,
+                            accurate, interpretable, and extensible across modalities — significantly advancing FIQA in
+                            accuracy, explainability, and scope.
                         </p>
                     </div>
                 </div>
@@ -136,15 +174,28 @@
     <br>
     <footer class="footer">
         <div class="container">
-            <div class="content has-text-centered">
-                <p>
-                    We thank the authors of <a rel="nerfies"
-                        href="https://github.com/nerfies/nerfies.github.io/tree/main">Nerfies</a>
-                    for generously open-sourcing the templates used in this website.
-                </p>
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <p>
+                            This research is based upon work supported in part by the Office of the Director of National
+                            Intelligence (ODNI), Intelligence Advanced Research Projects Activity (IARPA), via
+                            [2022-21102100005]. The views and conclusions contained herein are those of the authors and
+                            should not be interpreted as necessarily representing the official policies, either
+                            expressed or implied, of ODNI, IARPA, or the U.S. Government. The US Government is
+                            authorized to reproduce and distribute reprints for governmental purposes notwithstanding
+                            any copyright annotation therein.
+                        </p>
+                    </div>
+                    <div class="content has-text-centered">
+                        <p>
+                            We thank the authors of <a rel="nerfies"
+                                href="https://github.com/nerfies/nerfies.github.io/tree/main">Nerfies</a>
+                            for generously open-sourcing the templates used in this website.
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
         </div>
     </footer>
 
