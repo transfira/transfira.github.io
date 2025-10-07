@@ -171,10 +171,51 @@
         </div>
     </section>
 
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Results</h2>
+                    <div class="content has-text-justified">
+                        <!-- ROC Comparison Figures -->
+                        <figure>
+                            <img src="./static/images/roc_comparison.png"
+                                alt="ROC comparison on face recognition benchmarks" style="width:120%; height:auto;">
+                            <img src="./static/images/roc_wf_comparison.png" alt="ROC comparison on WebFace ablation"
+                                style="width:100%; height:auto;">
+                            <figcaption class="has-text-justified" style="font-style:normal; margin-top:0.75em;">
+                                <b>Figure&nbsp;2.</b> <b>Overall ROC analysis.</b> Top: Template-level ROC comparisons
+                                across different IQA methods; for clarity, only the strongest variant of each is shown.
+                                Bottom: Ablation study illustrating the individual and combined effects of CCAS-based
+                                filtering and CCS-based weighting. Metrics correspond to Table&nbsp;II, and <em>Average
+                                    (Baseline)</em> denotes uniform mean aggregation.
+                            </figcaption>
+                        </figure>
+
+                        <!-- TAR Results Table -->
+                        <figure>
+                            <img src="./static/images/tar_results.png" alt="Overall ROC performance table results"
+                                style="width:100%; height:auto;">
+                            <figcaption class="has-text-justified" style="font-style:normal; margin-top:0.75em;">
+                                <b>Table&nbsp;II.</b> <b>Overall ROC performance.</b> TAR at fixed FMRs for BRIAR
+                                Protocol&nbsp;3.1 and IJB-C using the backbones in Section&nbsp;§X.Y. All baseline
+                                methods perform <em>weighted</em> aggregation using FIQA scores, while our <b>CCAS
+                                    Filter</b> and <b>Filter&nbsp;+&nbsp;Weight</b> apply our
+                                <em>CCAS&nbsp;&gt;&nbsp;0</em> cutoff. <em>Average (Baseline)</em> denotes uniform
+                                aggregation without quality weighting. For each column, the best result is <b><u>bolded
+                                        and underlined</u></b>, and the second-best is <b>bolded</b>.
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section" id="BibTeX">
         <div class="container is-max-desktop content">
             <h2 class="title">BibTeX</h2>
-            <pre><code>@article{Tu2025transfira,
+            <pre><code>@article{Tu2025TransFIRA,
     author    = {Tu, Allen and Narayan, Kartik and Gleason, Joshua and Xu, Jennifer and Meyn, Matthew and Goldstein, Tom and Patel, Vishal M.},
     title     = {TransFIRA: Transfer Learning for Face Image Recognizability Assessment},
     journal   = {Preprint},
@@ -183,7 +224,7 @@
 }</code></pre>
         </div>
     </section>
-    
+
     <footer class="footer">
         <div class="container">
             <div class="columns is-centered">
