@@ -175,6 +175,121 @@
 
     <section class="section">
         <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-four-fifths has-text-centered">
+                    <h2 class="title is-3">Method</h2>
+
+                    <div class="content has-text-justified">
+                        <p>
+                            <strong>TransFIRA</strong> adapts a pretrained encoder to predict
+                            <em>recognizability</em>—the likelihood that an image will be correctly identified—directly
+                            from the encoder’s embedding geometry.
+                        </p>
+
+                        <p>The framework consists of three stages:</p>
+                        <ol type="i" style="margin-left:1.5em;">
+                            <li>Defining recognizability using embedding-based metrics,</li>
+                            <li>Learning to predict these scores from images via a lightweight regression head, and</li>
+                            <li>Applying the predictions for recognizability-informed filtering and weighting during
+                                template aggregation.</li>
+                        </ol>
+
+                        <!-- Image Recognizability -->
+                        <h4 class="title is-4 has-text-centered">Image Recognizability</h4>
+                        <p>
+                            Recognizability is defined entirely within the embedding space of the chosen encoder,
+                            ensuring that it reflects the model’s actual discrimination ability rather than superficial
+                            factors such as blur, illumination, or occlusion.
+                            For each image \(x_i\) with embedding \(z_i = \phi(x_i)\), we compute a set of class-center
+                            similarities that quantify how well the embedding aligns with its identity.
+                        </p>
+                        <p>
+                            The <b>Class Center Angular Similarity (CCS)</b> measures how closely an embedding aligns
+                            with the
+                            center of its own class:
+                        </p>
+                        <p class="has-text-centered">
+                            \( CCS_{x_i} = \frac{z_i^\top \mu_{y_i}}{\|z_i\|_2 \, \|\mu_{y_i}\|_2} \)
+                        </p>
+                        <p>
+                            The <b>Nearest Nonmatch Class Center Angular Similarity (NNCCS)</b> measures its similarity
+                            to the most
+                            confusable impostor class:
+                        </p>
+                        <p class="has-text-centered">
+                            \( NNCCS_{x_i} = \max_{\,j \neq y_i} \frac{z_i^\top \mu_j}{\|z_i\|_2 \, \|\mu_j\|_2} \)
+                        </p>
+                        <p>
+                            Their difference defines the <b>Class Center Angular Separation (CCAS)</b>:
+                        </p>
+                        <p class="has-text-centered">
+                            \( CCAS_{x_i} = CCS_{x_i} - NNCCS_{x_i} \)
+                        </p>
+                        <p>
+                            A natural cutoff emerges at <em>CCAS&nbsp;&gt;&nbsp;0</em>, indicating that an embedding is
+                            closer to its own
+                            class center than to any impostor. This provides a principled, parameter-free definition of
+                            recognizability
+                            grounded in the encoder’s decision geometry.
+                        </p>
+
+                        <!-- Recognizability Prediction Network -->
+                        <h4 class="title is-4 has-text-centered">Recognizability Prediction Network</h4>
+                        <p>
+                            To predict recognizability directly from images, TransFIRA extends a pretrained backbone
+                            with a lightweight
+                            <b>recognizability prediction head</b> implemented as a small MLP.
+                            The network outputs predicted scores for both CCS and CCAS:
+                        </p>
+                        <p class="has-text-centered">
+                            \( \hat{\mathbf{r}}_i = [\hat{CCS}_{x_i},\, \hat{CCAS}_{x_i}]^\top = h_\psi(\phi(x_i)) \)
+                        </p>
+                        <p>
+                            Training is performed end-to-end with mean squared error against ground-truth
+                            recognizability labels derived
+                            from the encoder itself. Fine-tuning both the backbone and head ensures recognizability
+                            remains
+                            <b>encoder-specific</b>, efficient to train, and fully aligned with the model’s internal
+                            representation.
+                        </p>
+
+                        <!-- Recognizability-Informed Template Aggregation -->
+                        <h4 class="title is-4 has-text-centered">Recognizability-Informed Template Aggregation</h4>
+                        <p>
+                            In template-based recognition benchmarks such as BRIAR and IJB-C, multiple images of a
+                            subject are combined
+                            into a single representation. TransFIRA uses predicted recognizability scores to guide this
+                            aggregation
+                            through two complementary steps:
+                        </p>
+                        <ul>
+                            <li>
+                                <b>Filtering:</b> Images with predicted <em>CCAS&nbsp;&gt;&nbsp;0</em> are retained,
+                                ensuring that only
+                                frames confidently recognized by the encoder contribute to the template.
+                            </li>
+                            <li>
+                                <b>Weighting:</b> Each remaining embedding is weighted by its predicted CCS before
+                                averaging,
+                                emphasizing compact, reliable samples most representative of the class.
+                            </li>
+                        </ul>
+                        <p>
+                            These operations form a <b>recognizability-informed aggregation strategy</b> that is both
+                            <b>interpretable</b> and <b>parameter-free</b>. Filtering ensures only geometrically valid
+                            samples are
+                            included, while weighting strengthens alignment with the class center, jointly improving
+                            accuracy and
+                            explainability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
             <div class="columns is-centered has-text-centered">
                 <div class="column is-full-width">
                     <h2 class="title is-3">Results</h2>
@@ -243,11 +358,11 @@
         <div class="container is-max-desktop content">
             <h2 class="title">BibTeX</h2>
             <pre><code>@article{Tu2025TransFIRA,
-    author    = {Tu, Allen and Narayan, Kartik and Gleason, Joshua and Xu, Jennifer and Meyn, Matthew and Goldstein, Tom and Patel, Vishal M.},
-    title     = {TransFIRA: Transfer Learning for Face Image Recognizability Assessment},
-    journal   = {Preprint},
-    year      = {2025},
-    url       = {https://transfira.github.io/}
+    author  = {Tu, Allen and Narayan, Kartik and Gleason, Joshua and Xu, Jennifer and Meyn, Matthew and Goldstein, Tom and Patel, Vishal M.},
+    title   = {TransFIRA: Transfer Learning for Face Image Recognizability Assessment},
+    journal = {Preprint},
+    year    = {2025},
+    url     = {https://transfira.github.io/}
 }</code></pre>
         </div>
     </section>
