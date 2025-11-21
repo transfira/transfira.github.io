@@ -46,7 +46,6 @@
                     <div class="column has-text-centered">
                         <h1 class="title is-1 publication-title">TransFIRA: Transfer Learning for<br>Face Image
                             Recognizability Assessment</h1>
-                        <!-- <h1 style="font-size:1.5rem">Preprint<br></h1> -->
                         <div class="is-size-5 publication-authors">
                             <span class="author-block">
                                 <a href="https://tuallen.github.io">Allen Tu</a><sup>1,2</sup>,</span>
@@ -95,14 +94,6 @@
                                         <span>arXiv</span>
                                     </a>
                                 </span>
-                                <!-- <span class="link-block">
-                                    <a class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="fab fa-github"></i>
-                                        </span>
-                                        <span>Coming Soon!</span>
-                                    </a>
-                                </span> -->
                             </div>
                         </div>
                     </div>
@@ -114,7 +105,6 @@
     <section class="hero teaser">
         <div class="container is-max-desktop">
             <div class="hero-body">
-                <!-- <img src="./static/images/teaser.png" alt="Teaser Image" style="width:100%; height:auto;"> -->
                 <picture>
                     <source srcset="./static/images/teaser.webp" type="image/webp">
                     <img src="./static/images/teaser.png" alt="Teaser" loading="lazy" style="width:100%;height:auto;">
@@ -135,39 +125,35 @@
                             conventional visual quality metrics fail to predict whether inputs are truly recognizable to
                             the deployed encoder. Existing FIQA methods typically rely on visual heuristics, curated
                             annotations, or computationally intensive generative pipelines, leaving their predictions
-                            detached from the encoder's decision geometry. We introduce <b>TransFIRA (Transfer
-                                Learning for Face Image Recognizability Assessment)</b>, a lightweight and
-                            annotation-free framework that grounds recognizability directly in embedding space.
+                            detached from the encoder's decision geometry. We introduce TransFIRA (Transfer Learning for
+                            Face Image Recognizability Assessment), a lightweight and annotation-free framework that
+                            grounds recognizability directly in embedding space.
                         </p>
 
                         <p>TransFIRA delivers three advances:</p>
                         <ol style="text-align: justify; list-style-type: lower-roman;">
                             <li>
-                                A definition of recognizability via <b>class-center similarity (CCS)</b> and
-                                <b>class-center angular separation (CCAS)</b>, yielding the first natural,
-                                decision-boundary-aligned criterion for filtering and weighting.
+                                A definition of recognizability via class-center similarity (CCS) and class-center
+                                angular separation (CCAS), yielding the first natural, decision-boundary-aligned
+                                criterion for filtering and weighting.
                             </li>
                             <li>
-                                A <b>recognizability-informed aggregation strategy</b> that achieves state-of-the-art
-                                verification
-                                accuracy on BRIAR and IJB-C while nearly doubling correlation with true recognizability,
-                                all
-                                without external labels, heuristics, or backbone-specific training.
+                                A recognizability-informed aggregation strategy that achieves state-of-the-art
+                                verification accuracy on BRIAR and IJB-C while nearly doubling correlation with true
+                                recognizability, all without external labels, heuristics, or backbone-specific training.
                             </li>
                             <li>
-                                New extensions beyond faces, including <b>encoder-grounded explainability</b> that
-                                reveals how
+                                New extensions beyond faces, including encoder-grounded explainability that reveals how
                                 degradations and subject-specific factors affect recognizability, and the first
-                                <b>recognizability-aware body recognition assessment</b>.
+                                recognizability-aware body recognition assessment.
                             </li>
                         </ol>
 
                         <p>
                             Experiments confirm state-of-the-art results on faces, strong performance on body
                             recognition,
-                            and robustness under cross-dataset shifts. Together, <b>these contributions establish
-                                TransFIRA as a unified, geometry-driven framework for recognizability assessment</b> —
-                            encoder-specific,
+                            and robustness under cross-dataset shifts. Together, these contributions establish TransFIRA
+                            as a unified, geometry-driven framework for recognizability assessment — encoder-specific,
                             accurate, interpretable, and extensible across modalities — significantly advancing FIQA in
                             accuracy, explainability, and scope.
                         </p>
@@ -198,7 +184,6 @@
                                 template aggregation.</li>
                         </ol>
 
-                        <!-- Image Recognizability -->
                         <h4 class="title is-4 has-text-centered">Image Recognizability</h4>
                         <p>
                             Recognizability is defined entirely within the embedding space of the chosen encoder,
@@ -237,7 +222,6 @@
                             grounded in the encoder’s decision geometry.
                         </p>
 
-                        <!-- Recognizability Prediction Network -->
                         <h4 class="title is-4 has-text-centered">Recognizability Prediction Network</h4>
                         <p>
                             To predict recognizability directly from images, TransFIRA extends a pretrained backbone
@@ -257,7 +241,6 @@
                             representation.
                         </p>
 
-                        <!-- Recognizability-Informed Template Aggregation -->
                         <h4 class="title is-4 has-text-centered">Recognizability-Informed Template Aggregation</h4>
                         <p>
                             In template-based recognition benchmarks such as BRIAR and IJB-C, multiple images of a
@@ -298,7 +281,6 @@
                 <div class="column is-full-width">
                     <h2 class="title is-3">Results</h2>
                     <div class="content has-text-justified">
-                        <!-- ROC Comparison Figures -->
                         <figure>
                             <img src="./static/images/roc_comparison.png"
                                 alt="ROC comparison on face recognition benchmarks" style="width:120%; height:auto;">
@@ -313,7 +295,6 @@
                             </figcaption>
                         </figure>
 
-                        <!-- TAR Results Table -->
                         <figure>
                             <img src="./static/images/tar_results.png" alt="Overall ROC performance table results"
                                 style="width:100%; height:auto;">
@@ -328,7 +309,6 @@
                             </figcaption>
                         </figure>
 
-                        <!-- ERC AUC Results Table -->
                         <!-- <figure>
                             <img src="./static/images/erc_auc_results.png" alt="Image-level recognizability evaluation"
                                 style="width:100%; height:auto;">
@@ -342,7 +322,6 @@
                             </figcaption>
                         </figure> -->
 
-                        <!-- Body Results Table -->
                         <figure>
                             <img src="./static/images/body_results.png" alt="Image-level recognizability evaluation"
                                 style="width:50%; height:auto;">
@@ -402,7 +381,6 @@
             </div>
         </div>
     </footer>
-
 </body>
 
 </html>
