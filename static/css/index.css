@@ -408,3 +408,25 @@ figcaption {
 .algorithm-container .highlight-yellow, .algorithm-container .highlight-purple, .algorithm-container .highlight-blue {
     padding: 4px 6px;
 }
+
+.table-iv-image {
+  width: 50%;
+  height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .table-iv-image {
+    width: 100%;
+  }
+
+  .results-section .content figure {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
+  }
+
+  .results-section .content figure figcaption {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
