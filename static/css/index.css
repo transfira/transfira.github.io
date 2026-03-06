@@ -414,6 +414,22 @@ figcaption {
   height: auto;
 }
 
+.roman-parens {
+    counter-reset: roman-counter;
+    list-style-type: none !important;
+}
+
+.roman-parens li {
+    counter-increment: roman-counter;
+    position: relative;
+}
+
+.roman-parens li::before {
+    content: "(" counter(roman-counter, lower-roman) ") ";
+    position: absolute;
+    left: -1.8em;
+}
+
 @media screen and (max-width: 768px) {
   .table-iv-image {
     width: 100%;
