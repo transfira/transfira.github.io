@@ -101,7 +101,7 @@ async function openPDF(event, url, title) {
   const overlay = _getOrCreateOverlay();
 
   document.getElementById('pdfTitle').textContent = title || 'PDF';
-  document.getElementById('pdfNewTab').href = url;
+  document.getElementById('pdfNewTab').href = url;  // always the full-size original
 
   const downloadBtn = document.getElementById('pdfDownload');
   downloadBtn.target = '';
@@ -156,7 +156,11 @@ async function openPDF(event, url, title) {
   void overlay.offsetWidth; // trigger CSS transition
   overlay.classList.add('show');
 
-  document.getElementById('pdfFrame').src = await _getOptimalViewerUrl(url);
+  // For poster PDFs, load a scaled-down _viewer version in the iframe for better readability.
+  // The download and "Open in New Tab" buttons always link to the original full-size URL.
+  const viewerUrl = /poster[^/]*\.pdf$/i.test(url)
+    ? url.replace(/\.pdf$/i, '_viewer.pdf') : url;
+  document.getElementById('pdfFrame').src = await _getOptimalViewerUrl(viewerUrl);
 }
 
 function closePDF(event) {
