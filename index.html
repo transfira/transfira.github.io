@@ -275,8 +275,8 @@
                     <div class="content has-text-justified">
                         <p>
                             <strong>TransFIRA</strong> adapts a pretrained encoder to predict
-                            <em>recognizability</em>—the likelihood that an image will be correctly identified—directly
-                            from the encoder’s embedding geometry.
+                            <em>recognizability</em> — the likelihood that an image will be correctly identified —
+                            directly from the encoder’s embedding geometry.
                         </p>
 
                         <p>The framework consists of three stages:</p>
@@ -301,7 +301,7 @@
                             center of its own class:
                         </p>
                         <p class="has-text-centered">
-                            \( CCS_{x_i} = \frac{z_i^\top \mu_{y_i}}{\|z_i\|_2 \, \|\mu_{y_i}\|_2} \)
+                            \( CCS_{x_i} = \frac{z_i^\top \mu_{y_i}}{\|z_i\|_2 \, \|\mu_{y_i}\|_2} \).
                         </p>
                         <p>
                             The <b>Nearest Nonmatch Class Center Angular Similarity (NNCCS)</b> measures its similarity
@@ -309,20 +309,19 @@
                             confusable impostor class:
                         </p>
                         <p class="has-text-centered">
-                            \( NNCCS_{x_i} = \max_{\,j \neq y_i} \frac{z_i^\top \mu_j}{\|z_i\|_2 \, \|\mu_j\|_2} \)
+                            \( NNCCS_{x_i} = \max_{\,j \neq y_i} \frac{z_i^\top \mu_j}{\|z_i\|_2 \, \|\mu_j\|_2} \).
                         </p>
                         <p>
                             Their difference defines the <b>Class Center Angular Separation (CCAS)</b>:
                         </p>
                         <p class="has-text-centered">
-                            \( CCAS_{x_i} = CCS_{x_i} - NNCCS_{x_i} \)
+                            \( CCAS_{x_i} = CCS_{x_i} - NNCCS_{x_i} \).
                         </p>
                         <p>
-                            A natural cutoff emerges at <em>CCAS&nbsp;&gt;&nbsp;0</em>, indicating that an embedding is
+                            A natural cutoff emerges at \( CCAS > 0 \), indicating that an embedding is
                             closer to its own
                             class center than to any impostor. This provides a principled, parameter-free definition of
-                            recognizability
-                            grounded in the encoder’s decision geometry.
+                            recognizability grounded in the encoder’s decision geometry.
                         </p>
 
                         <h4 class="title is-4 has-text-centered">Recognizability Prediction Network</h4>
@@ -347,14 +346,13 @@
                             In template-based recognition benchmarks such as BRIAR and IJB-C, multiple images of a
                             subject are combined
                             into a single representation. TransFIRA uses predicted recognizability scores to guide this
-                            aggregation
-                            through two complementary steps:
+                            aggregation through two complementary steps:
                         </p>
                         <ul>
                             <li>
-                                <b>Filtering:</b> Images with predicted <em>CCAS&nbsp;&gt;&nbsp;0</em> are retained,
-                                ensuring that only
-                                frames confidently recognized by the encoder contribute to the template.
+                                <b>Filtering:</b> Images with predicted \( CCAS > 0 \) are retained,
+                                ensuring that only frames confidently recognized by the encoder contribute to the
+                                template.
                             </li>
                             <li>
                                 <b>Weighting:</b> Each remaining embedding is weighted by its predicted CCS before
@@ -415,7 +413,7 @@
                                 Protocol&nbsp;3.1 and IJB-C using the backbones in Section&nbsp;IV-B. All baseline
                                 methods perform <em>weighted</em> aggregation using FIQA scores, while our <b>CCAS
                                     Filter</b> and <b>Filter&nbsp;+&nbsp;Weight</b> apply our
-                                <em>CCAS&nbsp;&gt;&nbsp;0</em> cutoff. <em>Average (Baseline)</em> denotes uniform
+                                \( CCAS > 0 \) cutoff. <em>Average (Baseline)</em> denotes uniform
                                 aggregation without quality weighting. For each column, the best result is <b><u>bolded
                                         and underlined</u></b>, and the second-best is <b>bolded</b>.
                             </figcaption>
