@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="description"
-        content="TransFIRA redefines template-based recognition through encoder-grounded recognizability prediction that learns directly from embedding geometry via class-center similarity and angular separation, enabling principled filtering, calibrated weighting, and cross-modal explainability that surpass prior FIQA methods in accuracy, interpretability, and generality.">
+        content="TransFIRA learns explainable, encoder-specific recognizability assessment from embedding geometry, improving TAR from 0.43 to 0.87 at 1e-3 FMR on the BRIAR benchmark for an open-source ArcFace encoder through principled filtering and template aggregation, achieving state-of-the-art performance in face image quality assessment and extending to body recognizability assessment.">
     <meta name="keywords"
         content="TransFIRA, Face Image Quality Assessment, FIQA, Recognizability Prediction, Class Center Similarity, CCS, CCAS, Transfer Learning, Face Recognition, Body Recognition, Template Aggregation, Explainability, Embedding Geometry, Encoder-grounded, BRIAR, IJB-C, SemReID, Computer Vision, Biometrics, Deep Learning, UMD, Johns Hopkins, Tom Goldstein, Vishal Patel">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
     <!-- Open Graph Tags -->
     <meta property="og:title" content="TransFIRA: Transfer Learning for Face Image Recognizability Assessment">
     <meta property="og:description"
-        content="Encoder-grounded recognizability prediction from embedding geometry for principled filtering, calibrated weighting, and interpretable template aggregation in face and body recognition.">
+        content="TransFIRA learns explainable, encoder-specific recognizability assessment from embedding geometry, improving TAR from 0.43 to 0.87 at 1e-3 FMR on the BRIAR benchmark for an open-source ArcFace encoder through principled filtering and template aggregation, achieving state-of-the-art performance in face image quality assessment and extending to body recognizability assessment.">
     <meta property="og:url" content="https://transfira.github.io/">
     <meta property="og:image" content="https://transfira.github.io/static/images/teaser.png">
     <meta property="og:type" content="website">
@@ -34,7 +34,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="TransFIRA: Transfer Learning for Face Image Recognizability Assessment">
     <meta name="twitter:description"
-        content="Encoder-grounded recognizability prediction from embedding geometry for principled filtering, calibrated weighting, and interpretable template aggregation in face and body recognition.">
+        content="TransFIRA learns explainable, encoder-specific recognizability assessment from embedding geometry, improving TAR from 0.43 to 0.87 at 1e-3 FMR on the BRIAR benchmark for an open-source ArcFace encoder through principled filtering and template aggregation, achieving state-of-the-art performance in face image quality assessment and extending to body recognizability assessment.">
     <meta name="twitter:image" content="https://transfira.github.io/static/images/teaser.png">
 
     <!-- Structured Data (JSON-LD) -->
@@ -80,7 +80,7 @@
           "url": "https://engineering.jhu.edu/faculty/vishal-patel/"
         }
       ],
-      "description": "Encoder-grounded recognizability prediction from embedding geometry for principled filtering, calibrated weighting, and interpretable template aggregation in face and body recognition.",
+      "description": "TransFIRA learns explainable, encoder-specific recognizability assessment from embedding geometry, improving TAR from 0.43 to 0.87 at 1e-3 FMR on the BRIAR benchmark for an open-source ArcFace encoder through principled filtering and template aggregation, achieving state-of-the-art performance in face image quality assessment and extending to body recognizability assessment.",
       "image": "https://transfira.github.io/static/images/teaser.png",
       "datePublished": "2025-10-07",
       "url": "https://transfira.github.io/"
@@ -503,9 +503,8 @@
                     </div>
                     <div class="content has-text-centered">
                         <p>
-                            We thank the authors of <a rel="nerfies"
-                                href="https://github.com/nerfies/nerfies.github.io/tree/main" target="_blank"
-                                rel="noopener noreferrer">Nerfies</a>
+                            We thank the authors of <a href="https://github.com/nerfies/nerfies.github.io/tree/main"
+                                target="_blank" rel="noopener noreferrer">Nerfies</a>
                             for generously <a href="https://github.com/transfira/transfira.github.io" target="_blank"
                                 rel="noopener noreferrer">open-sourcing</a>
                             the template used in this website.
