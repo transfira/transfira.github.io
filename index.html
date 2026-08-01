@@ -1,88 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="description"
-        content="TransFIRA learns explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.">
+        content="TransFIRA: Transfer Learning for Face Image Recognizability Assessment. Learn explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.">
     <meta name="keywords"
         content="TransFIRA, Face Image Quality Assessment, FIQA, Recognizability Prediction, Class Center Similarity, CCS, CCAS, Transfer Learning, Face Recognition, Body Recognition, Template Aggregation, Explainability, Embedding Geometry, Encoder-grounded, BRIAR, IJB-C, SemReID, Computer Vision, Biometrics, Deep Learning, UMD, Johns Hopkins, Tom Goldstein, Vishal Patel">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
     <title>TransFIRA: Transfer Learning for Face Image Recognizability Assessment</title>
 
     <!-- Canonical Link -->
     <link rel="canonical" href="https://transfira.github.io/">
+    <meta name="robots" content="index,follow">
 
-    <!-- Resource Hints -->
+    <!-- Resource Hints. Only origins the page still contacts: the icon fonts and
+         Bulma are self-hosted now, and jQuery is gone entirely. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://ajax.googleapis.com">
-    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <!-- Open Graph Tags -->
     <meta property="og:title" content="TransFIRA: Transfer Learning for Face Image Recognizability Assessment">
     <meta property="og:description"
-        content="TransFIRA learns explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.">
+        content="Learn explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.">
     <meta property="og:url" content="https://transfira.github.io/">
-    <meta property="og:image" content="https://transfira.github.io/static/images/teaser.png">
+    <meta property="og:image" content="https://transfira.github.io/static/images/teaser_card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"
+        content="TransFIRA overview diagram: a frozen pretrained encoder embeds training images and compares each embedding to the class centers to derive CCS and CCAS recognizability scores, which supervise a lightweight recognizability prediction head on a fine-tuned copy of the encoder; at right, example BRIAR Protocol 3.1 faces with their CCS and NNCCS values and a histogram of the CCS and NNCCS cosine-similarity distributions.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="TransFIRA">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="TransFIRA: Transfer Learning for Face Image Recognizability Assessment">
     <meta name="twitter:description"
-        content="TransFIRA learns explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.">
-    <meta name="twitter:image" content="https://transfira.github.io/static/images/teaser.png">
+        content="Learn explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.">
+    <meta name="twitter:image" content="https://transfira.github.io/static/images/teaser_card.jpg">
+    <meta name="twitter:image:alt"
+        content="TransFIRA overview diagram: a frozen pretrained encoder embeds training images and compares each embedding to the class centers to derive CCS and CCAS recognizability scores, which supervise a lightweight recognizability prediction head on a fine-tuned copy of the encoder; at right, example BRIAR Protocol 3.1 faces with their CCS and NNCCS values and a histogram of the CCS and NNCCS cosine-similarity distributions.">
+    <meta name="twitter:url" content="https://transfira.github.io/">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ScholarlyArticle",
+      "@id": "https://transfira.github.io/#article",
       "headline": "TransFIRA: Transfer Learning for Face Image Recognizability Assessment",
       "author": [
         {
           "@type": "Person",
+          "@id": "https://tuallen.github.io/#person",
           "name": "Allen Tu",
-          "url": "https://tuallen.github.io"
+          "url": "https://tuallen.github.io",
+          "affiliation": [
+            {
+              "@type": "Organization",
+              "name": "Systems and Technology Research"
+            },
+            {
+              "@type": "CollegeOrUniversity",
+              "name": "University of Maryland, College Park"
+            }
+          ]
         },
         {
           "@type": "Person",
           "name": "Kartik Narayan",
-          "url": "https://kartik-3004.github.io/portfolio/"
+          "url": "https://kartik-3004.github.io/portfolio/",
+          "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": "Johns Hopkins University"
+          }
         },
         {
           "@type": "Person",
           "name": "Joshua Gleason",
-          "url": "https://scholar.google.com/citations?user=FUchtr4AAAAJ"
+          "url": "https://scholar.google.com/citations?user=FUchtr4AAAAJ",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Systems and Technology Research"
+          }
         },
         {
           "@type": "Person",
           "name": "Jennifer Xu",
-          "url": "https://scholar.google.com/citations?user=iFy2JdkAAAAJ"
+          "url": "https://scholar.google.com/citations?user=iFy2JdkAAAAJ",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Systems and Technology Research"
+          }
         },
         {
           "@type": "Person",
           "name": "Matthew Meyn",
-          "url": "https://www.linkedin.com/in/matthew-meyn-579784157"
+          "url": "https://www.linkedin.com/in/matthew-meyn-579784157",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Systems and Technology Research"
+          }
         },
         {
           "@type": "Person",
           "name": "Tom Goldstein",
-          "url": "https://www.cs.umd.edu/~tomg/"
+          "url": "https://www.cs.umd.edu/~tomg/",
+          "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Maryland, College Park"
+          }
         },
         {
           "@type": "Person",
           "name": "Vishal M. Patel",
-          "url": "https://engineering.jhu.edu/faculty/vishal-patel/"
+          "url": "https://engineering.jhu.edu/faculty/vishal-patel/",
+          "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": "Johns Hopkins University"
+          }
         }
       ],
-      "description": "TransFIRA learns explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.",
-      "image": "https://transfira.github.io/static/images/teaser.png",
-      "datePublished": "2025-10-07",
+      "description": "Learn explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.",
+      "image": "https://transfira.github.io/static/images/teaser_card.jpg",
+      "datePublished": "2026-05",
+      "dateCreated": "2025-10-07",
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "DOI",
+          "value": "10.1109/FG67764.2026.11556959"
+        },
+        {
+          "@type": "PropertyValue",
+          "propertyID": "arXiv",
+          "value": "2510.06353"
+        }
+      ],
+      "sameAs": "https://arxiv.org/abs/2510.06353",
+      "isPartOf": {
+        "@type": "PublicationEvent",
+        "name": "Proceedings of the IEEE 20th International Conference on Automatic Face and Gesture Recognition (FG)",
+        "alternateName": "FG 2026"
+      },
+      "pagination": "1-9",
+      "publisher": {
+        "@type": "Organization",
+        "name": "IEEE"
+      },
+      "inLanguage": "en",
+      "keywords": "TransFIRA, Face Image Quality Assessment, FIQA, Recognizability Prediction, Class Center Similarity, CCS, CCAS, Transfer Learning, Face Recognition, Body Recognition, Template Aggregation, Explainability, Embedding Geometry, Encoder-grounded, BRIAR, IJB-C, SemReID, Computer Vision, Biometrics, Deep Learning, UMD, Johns Hopkins, Tom Goldstein, Vishal Patel",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://transfira.github.io/"
+      },
       "url": "https://transfira.github.io/"
     }
     </script>
@@ -96,406 +171,434 @@
         gtag('config', 'G-CF4D7TMLZE');
     </script>
 
-    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <!-- Fonts. Noto Sans is self-hosted (see tools/build-webfonts.sh); Google Sans
+         is proprietary, so it stays on Google's CDN but is loaded without
+         blocking the first paint. -->
+    <link rel="preload" href="./static/webfonts/noto-sans-latin.woff2?v=2026.07.31.3" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./static/css/noto-sans.css?v=2026.07.31.3">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans&display=swap"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans&display=swap">
+    </noscript>
 
-    <link rel="stylesheet" href="./static/css/bulma.min.css?v=2026.03.08.1">
-    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css?v=2026.03.08.1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-    <link rel="stylesheet" href="./static/css/index.css?v=2026.03.08.1">
-    <link rel="icon" href="./static/images/favicon.svg?v=2026.03.08.1" type="image/svg+xml">
-    <link rel="icon" href="./static/images/favicon.png?v=2026.03.08.1" type="image/png" sizes="32x32">
-    <link rel="icon" href="./static/images/favicon.ico?v=2026.03.08.1" sizes="any">
-    <link rel="apple-touch-icon" href="./static/images/favicon.png?v=2026.03.08.1">
+    <link rel="stylesheet" href="./static/css/bulma.min.css?v=2026.07.31.3">
+    <link rel="stylesheet" href="./static/css/rhythm.css?v=2026.07.31.3">
+    <link rel="stylesheet" href="./static/css/icons.css?v=2026.07.31.3">
+    <link rel="stylesheet" href="./static/css/pdf-modal.css?v=2026.07.31.3">
+    <link rel="stylesheet" href="./static/css/index.css?v=2026.07.31.3">
+    <link rel="stylesheet" href="./static/css/interactions.css?v=2026.07.31.3">
+    <link rel="icon" href="./static/images/favicon.svg?v=2026.07.31.3" type="image/svg+xml">
+    <link rel="icon" href="./static/images/favicon.png?v=2026.07.31.3" type="image/png" sizes="32x32">
+    <link rel="icon" href="./static/images/favicon.ico?v=2026.07.31.3" sizes="any">
+    <link rel="apple-touch-icon" href="./static/images/favicon.png?v=2026.07.31.3">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="./static/js/fontawesome.all.min.js?v=2026.03.08.1"></script>
-    <script src="./static/js/bulma-carousel.min.js?v=2026.03.08.1"></script>
-    <script src="./static/js/index.js?v=2026.03.08.1"></script>
-    <script defer src="./static/js/script.js?v=2026.03.08.1"></script>
-    <script defer src="./static/js/pdf-modal.js?v=2026.03.09"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer src="./static/js/script.js?v=2026.07.31.3"></script>
+    <script defer src="./static/js/pdf-modal.js?v=2026.07.31.3"></script>
+    <!-- tex-chtml, not tex-mml-chtml: the -mml- bundle adds a MathML *input*
+         processor and there is no <math> markup on this page, so it was dead
+         weight. Same CHTML output, so equations render identically. The config
+         must precede the script tag. -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']]
+            },
+            options: {
+                // Nothing on these pages needs the right-click menu, and skipping it
+                // avoids building its DOM on every typeset.
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
 </head>
 
 <body>
-    <section class="hero">
-        <div class="hero-body">
-            <div class="container is-max-desktop">
-                <div class="columns is-centered">
-                    <div class="column has-text-centered">
-                        <h1 class="title is-1 publication-title">TransFIRA: Transfer Learning for<br>Face Image
-                            Recognizability Assessment</h1>
-                        <div class="is-size-3 publication-venue">FG 2026 (Oral)</div>
-                        <div class="is-size-5 publication-authors">
-                            <span class="author-block">
-                                <a href="https://tuallen.github.io" target="_blank" rel="noopener noreferrer">Allen
-                                    Tu</a><sup>1,2</sup>,</span>
-                            <span class="author-block">
-                                <a href="https://kartik-3004.github.io/portfolio/" target="_blank"
-                                    rel="noopener noreferrer">Kartik
-                                    Narayan</a><sup>3</sup>,</span>
-                            <span class="author-block">
-                                <a href="https://scholar.google.com/citations?user=FUchtr4AAAAJ" target="_blank"
-                                    rel="noopener noreferrer">Joshua
-                                    Gleason</a><sup>1</sup>,</span>
-                            <span class="author-block">
-                                <a href="https://scholar.google.com/citations?user=iFy2JdkAAAAJ" target="_blank"
-                                    rel="noopener noreferrer">Jennifer
-                                    Xu</a><sup>1</sup>, </span><br>
-                            <span class="author-block">
-                                <a href="https://www.linkedin.com/in/matthew-meyn-579784157" target="_blank"
-                                    rel="noopener noreferrer">Matthew
-                                    Meyn</a><sup>1</sup>, </span>
-                            <span class="author-block">
-                                <a href="https://www.cs.umd.edu/~tomg/" target="_blank" rel="noopener noreferrer">Tom
-                                    Goldstein</a><sup>2</sup>,</span>
-                            <span class="author-block">
-                                <a href="https://engineering.jhu.edu/faculty/vishal-patel/" target="_blank"
-                                    rel="noopener noreferrer">Vishal M.
-                                    Patel</a><sup>3</sup></span>
-                        </div>
-
-                        <div class="is-size-5 publication-authors">
-                            <span class="author-block"><sup>1</sup>Systems and Technology Research,</span>
-                            <span class="author-block"><sup>2</sup>University of Maryland, College Park,</span>
-                            <span class="author-block"><sup>3</sup>Johns Hopkins University</span>
-                        </div>
-
+    <main>
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container is-max-desktop">
+                    <div class="columns is-centered">
                         <div class="column has-text-centered">
-                            <div class="publication-links">
-                                <span class="link-block">
-                                    <a href="https://arxiv.org/pdf/2510.06353" target="_blank" rel="noopener noreferrer"
-                                        title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
-                                        class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="fas fa-file-pdf"></i>
-                                        </span>
-                                        <span>Paper</span>
-                                    </a>
-                                </span>
-                                <span class="link-block">
-                                    <a href="https://arxiv.org/abs/2510.06353" target="_blank" rel="noopener noreferrer"
-                                        class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="ai ai-arxiv"></i>
-                                        </span>
-                                        <span>arXiv</span>
-                                    </a>
-                                </span>
-                                <span class="link-block">
-                                    <a href="static/files/transfira_poster.pdf?v=2026.03.08.1"
-                                        title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
-                                        class="external-link button is-normal is-rounded is-dark" target="_blank"
-                                        rel="noopener noreferrer">
-                                        <span class="icon">
-                                            <i class="fas fa-image"></i>
-                                        </span>
-                                        <span>Poster</span>
-                                    </a>
-                                </span>
-                                <!-- Video Link. -->
-                                <span class="link-block">
-                                    <a href="https://youtu.be/E7kEIS1PW1I"
-                                        class="external-link button is-normal is-rounded is-dark" target="_blank"
-                                        rel="noopener noreferrer">
-                                        <span class="icon">
-                                            <i class="fab fa-youtube"></i>
-                                        </span>
-                                        <span>Video</span>
-                                    </a>
-                                </span>
-                                <span class="link-block">
-                                    <a href="https://github.com/tuallen/transfira" target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="fab fa-github"></i>
-                                        </span>
-                                        <span>Code</span>
-                                    </a>
-                                </span>
+                            <!-- The explicit break sets the intended two-line shape on desktop;
+                                 the nowrap span keeps "Face Image Recognizability" from
+                                 splitting mid-phrase if a narrower screen re-wraps. Plain
+                                 spans and ordinary spaces, so crawlers read the same string. -->
+                            <h1 class="title is-1 publication-title">TransFIRA: Transfer Learning for <br><span
+                                    class="nowrap">Face Image Recognizability</span> Assessment</h1>
+                            <div class="is-size-3 publication-venue">FG 2026 (Oral)</div>
+                            <div class="is-size-5 publication-authors">
+                                <span class="author-block">
+                                    <a href="https://tuallen.github.io" target="_blank" rel="noopener noreferrer">Allen
+                                        Tu</a><sup>1,2</sup>,</span>
+                                <span class="author-block">
+                                    <a href="https://kartik-3004.github.io/portfolio/" target="_blank"
+                                        rel="noopener noreferrer">Kartik
+                                        Narayan</a><sup>3</sup>,</span>
+                                <span class="author-block">
+                                    <a href="https://scholar.google.com/citations?user=FUchtr4AAAAJ" target="_blank"
+                                        rel="noopener noreferrer">Joshua
+                                        Gleason</a><sup>1</sup>,</span>
+                                <span class="author-block">
+                                    <a href="https://scholar.google.com/citations?user=iFy2JdkAAAAJ" target="_blank"
+                                        rel="noopener noreferrer">Jennifer
+                                        Xu</a><sup>1</sup>, </span><br>
+                                <span class="author-block">
+                                    <a href="https://www.linkedin.com/in/matthew-meyn-579784157" target="_blank"
+                                        rel="noopener noreferrer">Matthew
+                                        Meyn</a><sup>1</sup>, </span>
+                                <span class="author-block">
+                                    <a href="https://www.cs.umd.edu/~tomg/" target="_blank" rel="noopener noreferrer">Tom
+                                        Goldstein</a><sup>2</sup>,</span>
+                                <span class="author-block">
+                                    <a href="https://engineering.jhu.edu/faculty/vishal-patel/" target="_blank"
+                                        rel="noopener noreferrer">Vishal M.
+                                        Patel</a><sup>3</sup></span>
+                            </div>
+
+                            <div class="is-size-5 publication-authors">
+                                <span class="author-block"><sup>1</sup>Systems and Technology Research,</span>
+                                <span class="author-block"><sup>2</sup>University of Maryland, College Park,</span>
+                                <span class="author-block"><sup>3</sup>Johns Hopkins University</span>
+                            </div>
+
+                            <div class="column has-text-centered">
+                                <div class="publication-links">
+                                    <span class="link-block">
+                                        <a href="https://arxiv.org/pdf/2510.06353" target="_blank" rel="noopener noreferrer"
+                                            title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
+                                            class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </span>
+                                            <span>Paper</span>
+                                        </a>
+                                    </span>
+                                    <span class="link-block">
+                                        <a href="https://arxiv.org/abs/2510.06353" target="_blank" rel="noopener noreferrer"
+                                            class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="ai ai-arxiv"></i>
+                                            </span>
+                                            <span>arXiv</span>
+                                        </a>
+                                    </span>
+                                    <span class="link-block">
+                                        <a href="static/files/transfira_poster.pdf?v=2026.07.31.3"
+                                            title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
+                                            class="external-link button is-normal is-rounded is-dark" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <span class="icon">
+                                                <i class="fas fa-image"></i>
+                                            </span>
+                                            <span>Poster</span>
+                                        </a>
+                                    </span>
+                                    <!-- Video Link. -->
+                                    <span class="link-block">
+                                        <a href="https://youtu.be/E7kEIS1PW1I"
+                                            class="external-link button is-normal is-rounded is-dark" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <span class="icon">
+                                                <i class="fab fa-youtube"></i>
+                                            </span>
+                                            <span>Talk</span>
+                                        </a>
+                                    </span>
+                                    <span class="link-block">
+                                        <a href="https://github.com/tuallen/transfira" target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                            <span>Code</span>
+                                        </a>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="hero teaser">
-        <div class="container is-max-desktop">
-            <div class="hero-body">
-                <picture>
-                    <source srcset="./static/images/teaser.webp?v=2026.03.08.1" type="image/webp">
-                    <img src="./static/images/teaser.png?v=2026.03.08.1" alt="Teaser" fetchpriority="high"
-                        style="width:100%;height:auto;">
-                </picture>
+        <section class="hero teaser">
+            <div class="container is-max-desktop">
+                <div class="hero-body">
+                    <picture>
+                        <source srcset="./static/images/teaser.webp?v=2026.07.31.3" type="image/webp">
+                        <img src="./static/images/teaser.png?v=2026.07.31.3"
+                            alt="TransFIRA overview: a frozen pretrained encoder embeds training images and compares each embedding to the class centers to derive its CCS and CCAS recognizability scores, which supervise a lightweight recognizability prediction head on a fine-tuned copy of the encoder; at right, example BRIAR Protocol 3.1 faces labeled with their CCS and NNCCS values and a histogram of the CCS and NNCCS cosine-similarity distributions."
+                            fetchpriority="high" style="width:100%;height:auto;">
+                    </picture>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <div class="container is-max-desktop">
-            <div class="columns is-centered has-text-centered">
-                <div class="column is-four-fifths">
-                    <h2 class="title is-3">Abstract</h2>
-                    <div class="content has-text-justified">
-                        <p>
-                            Face recognition in unconstrained environments such as surveillance, video, and web imagery
-                            must contend with extreme variation in pose, blur, illumination, and occlusion, where
-                            conventional visual quality metrics fail to predict whether inputs are truly recognizable to
-                            the deployed encoder. Existing FIQA methods typically rely on visual heuristics, curated
-                            annotations, or computationally intensive generative pipelines, leaving their predictions
-                            detached from the encoder's decision geometry. We introduce TransFIRA (Transfer Learning for
-                            Face Image Recognizability Assessment), a lightweight and annotation-free framework that
-                            grounds recognizability directly in embedding space.
-                        </p>
+        <section class="section" id="abstract">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3">Abstract</h2>
+                        <div class="content has-text-justified">
+                            <p>
+                                Face recognition in unconstrained environments such as surveillance, video, and web imagery
+                                must contend with extreme variation in pose, blur, illumination, and occlusion, where
+                                conventional visual quality metrics fail to predict whether inputs are truly recognizable to
+                                the deployed encoder. Existing FIQA methods typically rely on visual heuristics, curated
+                                annotations, or computationally intensive generative pipelines, leaving their predictions
+                                detached from the encoder’s decision geometry. We introduce TransFIRA (Transfer Learning for
+                                Face Image Recognizability Assessment), a lightweight and annotation-free framework that
+                                grounds recognizability directly in embedding space.
+                            </p>
 
-                        <p>TransFIRA delivers three advances:</p>
-                        <ol class="roman-parens" style="text-align: justify;">
-                            <li>
-                                a definition of recognizability via class-center similarity (CCS) and class-center
-                                angular separation (CCAS), yielding the first natural, decision-boundary–aligned
-                                criterion for filtering and weighting;
-                            </li>
-                            <li>
-                                a recognizability-informed aggregation strategy that achieves state-of-the-art
-                                verification accuracy on BRIAR and IJB-C while nearly doubling correlation with true
-                                recognizability, all without external labels, heuristics, or backbone-specific training;
-                                and
-                            </li>
-                            <li>
-                                new extensions beyond faces, including encoder-grounded explainability that reveals how
-                                degradations and subject-specific factors affect recognizability, and the first method
-                                for body recognizability assessment.
-                            </li>
-                        </ol>
+                            <p>TransFIRA delivers three advances:</p>
+                            <ol class="roman-parens" style="text-align: justify;">
+                                <li>
+                                    a definition of recognizability via class-center similarity (CCS) and class-center
+                                    angular separation (CCAS), yielding the first natural, decision-boundary–aligned
+                                    criterion for filtering and weighting;
+                                </li>
+                                <li>
+                                    a recognizability-informed aggregation strategy that achieves state-of-the-art
+                                    verification accuracy on BRIAR and IJB-C while nearly doubling correlation with true
+                                    recognizability, all without external labels, heuristics, or backbone-specific training;
+                                    and
+                                </li>
+                                <li>
+                                    new extensions beyond faces, including encoder-grounded explainability that reveals how
+                                    degradations and subject-specific factors affect recognizability, and the first method
+                                    for body recognizability assessment.
+                                </li>
+                            </ol>
 
-                        <p>
-                            Experiments confirm state-of-the-art results on faces, strong performance on body
-                            recognition, and robustness under cross-dataset shifts and out-of-distribution evaluation.
-                            Together, these contributions establish TransFIRA as a unified, geometry-driven framework
-                            for recognizability assessment that is encoder-specific, accurate, interpretable, and
-                            extensible across modalities, significantly advancing FIQA in accuracy, explainability, and
-                            scope.
-                        </p>
+                            <p>
+                                Experiments confirm state-of-the-art results on faces, strong performance on body
+                                recognition, and robustness under cross-dataset shifts and out-of-distribution evaluation.
+                                Together, these contributions establish TransFIRA as a unified, geometry-driven framework
+                                for recognizability assessment that is encoder-specific, accurate, interpretable, and
+                                extensible across modalities, significantly advancing FIQA in accuracy, explainability, and
+                                scope.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Paper video. -->
-            <div class="columns is-centered has-text-centered">
-                <div class="column is-four-fifths">
-                    <h2 class="title is-3">Video</h2>
-                    <div class="publication-video">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/E7kEIS1PW1I"
-                            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
-           encrypted-media; " allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
+    <section class="section" id="talk">
         <div class="container is-max-desktop">
-            <div class="columns is-centered">
-                <div class="column is-four-fifths has-text-centered">
-                    <h2 class="title is-3">Method</h2>
-
-                    <div class="content has-text-justified">
-                        <p>
-                            <strong>TransFIRA</strong> adapts a pretrained encoder to predict
-                            <em>recognizability</em> — the likelihood that an image will be correctly identified —
-                            directly from the encoder’s embedding geometry.
-                        </p>
-
-                        <p>The framework consists of three stages:</p>
-                        <ol class="roman-parens" style="margin-left:1.5em;">
-                            <li>Defining recognizability using embedding-based metrics,</li>
-                            <li>Learning to predict these scores from images via a lightweight regression head, and</li>
-                            <li>Applying the predictions for recognizability-informed filtering and weighting during
-                                template aggregation.</li>
-                        </ol>
-
-                        <h4 class="title is-4 has-text-centered">Image Recognizability</h4>
-                        <p>
-                            Recognizability is defined entirely within the embedding space of the chosen encoder,
-                            ensuring that it reflects the model’s actual discrimination ability rather than superficial
-                            factors such as blur, illumination, or occlusion.
-                            For each image \(x_i\) with embedding \(z_i = \phi(x_i)\), we compute a set of class-center
-                            similarities that quantify how well the embedding aligns with its identity.
-                        </p>
-                        <p>
-                            The <b>Class Center Angular Similarity (CCS)</b> measures how closely an embedding aligns
-                            with the
-                            center of its own class:
-                        </p>
-                        <p class="has-text-centered">
-                            \( CCS_{x_i} = \frac{z_i^\top \mu_{y_i}}{\|z_i\|_2 \, \|\mu_{y_i}\|_2} \).
-                        </p>
-                        <p>
-                            The <b>Nearest Nonmatch Class Center Angular Similarity (NNCCS)</b> measures its similarity
-                            to the most
-                            confusable impostor class:
-                        </p>
-                        <p class="has-text-centered">
-                            \( NNCCS_{x_i} = \max_{\,j \neq y_i} \frac{z_i^\top \mu_j}{\|z_i\|_2 \, \|\mu_j\|_2} \).
-                        </p>
-                        <p>
-                            Their difference defines the <b>Class Center Angular Separation (CCAS)</b>:
-                        </p>
-                        <p class="has-text-centered">
-                            \( CCAS_{x_i} = CCS_{x_i} - NNCCS_{x_i} \).
-                        </p>
-                        <p>
-                            A natural cutoff emerges at \( CCAS > 0 \), indicating that an embedding is
-                            closer to its own
-                            class center than to any impostor. This provides a principled, parameter-free definition of
-                            recognizability grounded in the encoder’s decision geometry.
-                        </p>
-
-                        <h4 class="title is-4 has-text-centered">Recognizability Prediction Network</h4>
-                        <p>
-                            To predict recognizability directly from images, TransFIRA extends a pretrained backbone
-                            with a lightweight
-                            <b>recognizability prediction head</b> implemented as a linear layer.
-                            The network outputs predicted scores for both CCS and CCAS:
-                        </p>
-                        <p class="has-text-centered">
-                            \( \hat{\mathbf{r}}_i = [\hat{CCS}_{x_i},\, \hat{CCAS}_{x_i}]^\top = h_\psi(\phi(x_i)) \)
-                        </p>
-                        <p>
-                            Training is performed end-to-end with mean squared error against ground-truth
-                            recognizability labels derived from the encoder itself. Fine-tuning both the backbone and
-                            head ensures recognizability remains encoder-specific, efficient to train, and fully
-                            aligned with the model’s internal representation.
-                        </p>
-
-                        <h4 class="title is-4 has-text-centered">Recognizability-Informed Template Aggregation</h4>
-                        <p>
-                            In template-based recognition benchmarks such as BRIAR and IJB-C, multiple images of a
-                            subject are combined
-                            into a single representation. TransFIRA uses predicted recognizability scores to guide this
-                            aggregation through two complementary steps:
-                        </p>
-                        <ul>
-                            <li>
-                                <b>Filtering:</b> Images with predicted \( CCAS > 0 \) are retained,
-                                ensuring that only frames confidently recognized by the encoder contribute to the
-                                template.
-                            </li>
-                            <li>
-                                <b>Weighting:</b> Each remaining embedding is weighted by its predicted CCS before
-                                averaging,
-                                emphasizing compact, reliable samples most representative of the class.
-                            </li>
-                        </ul>
-                        <p>
-                            These operations form a recognizability-informed aggregation strategy that is both
-                            interpretable and parameter-free. Filtering ensures only geometrically valid samples are
-                            included, while weighting strengthens alignment with the class center, jointly improving
-                            accuracy and explainability.
-                        </p>
+    <div class="columns is-centered has-text-centered">
+                        <div class="column is-four-fifths">
+                            <h2 class="title is-3">Talk</h2>
+                            <div class="publication-video">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/E7kEIS1PW1I"
+                                    title="TransFIRA: FG 2026 oral presentation" allow="accelerometer; autoplay;
+                   encrypted-media; " allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <section class="section results-section">
-        <div class="container is-max-desktop">
-            <div class="columns is-centered has-text-centered">
-                <div class="column is-full-width">
-                    <h2 class="title is-3">Results</h2>
-                    <div class="content has-text-justified">
-                        <figure>
-                            <picture>
-                                <source srcset="./static/images/roc_comparison.webp?v=2026.03.08.1" type="image/webp">
-                                <img src="./static/images/roc_comparison.png?v=2026.03.08.1"
-                                    alt="ROC comparison on face recognition benchmarks" loading="lazy"
-                                    style="width:120%; height:auto;">
-                            </picture>
-                            <picture>
-                                <source srcset="./static/images/roc_wf_comparison.webp?v=2026.03.08.1"
-                                    type="image/webp">
-                                <img src="./static/images/roc_wf_comparison.png?v=2026.03.08.1"
-                                    alt="ROC comparison on WebFace ablation" loading="lazy"
-                                    style="width:100%; height:auto;">
-                            </picture>
-                            <figcaption class="has-text-justified" style="font-style:normal; margin-top:0.75em;">
-                                Fig.&nbsp;2: <b>Overall ROC analysis.</b> Top: Template-level ROC comparisons
-                                across different IQA methods; for clarity, only the strongest variant of each is shown.
-                                Bottom: Ablation study illustrating the individual and combined effects of CCAS-based
-                                filtering and CCS-based weighting. Metrics correspond to Table&nbsp;II, and <em>Average
-                                    (Baseline)</em> denotes uniform mean aggregation.
-                            </figcaption>
-                        </figure>
+        <section class="section" id="method">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column is-four-fifths has-text-centered">
+                        <h2 class="title is-3">Method</h2>
 
-                        <figure>
-                            <picture>
-                                <source srcset="./static/images/tar_results.webp?v=2026.03.08.1" type="image/webp">
-                                <img src="./static/images/tar_results.png?v=2026.03.08.1"
-                                    alt="Overall ROC performance table results" loading="lazy"
-                                    style="width:100%; height:auto;">
-                            </picture>
-                            <figcaption class="has-text-justified" style="font-style:normal; margin-top:0.75em;">
-                                TABLE&nbsp;II: <b>Overall ROC performance.</b> TAR at fixed FMRs for BRIAR
-                                Protocol&nbsp;3.1 and IJB-C using the backbones in Section&nbsp;IV-B. All baseline
-                                methods perform <em>weighted</em> aggregation using FIQA scores, while our <b>CCAS
-                                    Filter</b> and <b>Filter&nbsp;+&nbsp;Weight</b> apply our
-                                \( CCAS > 0 \) cutoff. <em>Average (Baseline)</em> denotes uniform
-                                aggregation without quality weighting. For each column, the best result is <b><u>bolded
-                                        and underlined</u></b>, and the second-best is <b>bolded</b>.
-                            </figcaption>
-                        </figure>
+                        <div class="content has-text-justified">
+                            <p>
+                                <strong>TransFIRA</strong> adapts a pretrained encoder to predict
+                                <em>recognizability</em> — the likelihood that an image will be correctly identified —
+                                directly from the encoder’s embedding geometry.
+                            </p>
 
-                        <!-- <figure>
-                            <picture>
-                                <source srcset="./static/images/erc_auc_results.webp" type="image/webp">
-                                <img src="./static/images/erc_auc_results.png" alt="Image-level recognizability evaluation"
-                                    loading="lazy" style="width:100%; height:auto;">
-                            </picture>
-                            <figcaption class="has-text-justified" style="font-style:normal; margin-top:0.75em;">
-                                TABLE&nbsp;III: <b>Image-level recognizability evaluation.</b> Image-level Spearman
-                                correlation (SC) and FNMR–ERC AUC at fixed FMRs for BRIAR&nbsp;Protocol&nbsp;3.1 and
-                                IJB-C, using the backbones in Section&nbsp;§X.Y. SC is computed against CCS for all
-                                methods except for <b>Ours (CCAS)</b>, where it is computed against CCAS. For each
-                                dataset and backbone, the method with the highest SC or lowest AUC is highlighted in
-                                <b><u>bold and underlined</u></b>, while the second-best is shown in <b>bold</b>.
-                            </figcaption>
-                        </figure> -->
+                            <p>The framework consists of three stages:</p>
+                            <ol class="roman-parens" style="margin-left:1.5em;">
+                                <li>Defining recognizability using embedding-based metrics,</li>
+                                <li>Learning to predict these scores from images via a lightweight regression head, and</li>
+                                <li>Applying the predictions for recognizability-informed filtering and weighting during
+                                    template aggregation.</li>
+                            </ol>
 
-                        <figure>
-                            <picture>
-                                <source srcset="./static/images/body_results.webp?v=2026.03.08.1" type="image/webp">
-                                <img src="./static/images/body_results.png?v=2026.03.08.1"
-                                    alt="Image-level recognizability evaluation" loading="lazy" class="table-iv-image">
-                            </picture>
-                            <figcaption class="has-text-justified" style="font-style:normal; margin-top:0.75em;">
-                                TABLE&nbsp;IV: <b>TAR at fixed FMRs for body recognition on BRIAR Protocol 3.1 using the
-                                    SemReID encoder.</b> The method with the best performance for each operating point
-                                is <b>bolded</b>. Full results are reported in Appendix&nbsp;B.
-                            </figcaption>
-                        </figure>
+                            <h3 class="title is-4 has-text-centered">Image Recognizability</h3>
+                            <p>
+                                Recognizability is defined entirely within the embedding space of the chosen encoder,
+                                ensuring that it reflects the model’s actual discrimination ability rather than superficial
+                                factors such as blur, illumination, or occlusion.
+                                For each image \(x_i\) with embedding \(z_i = \phi(x_i)\), we compute a set of class-center
+                                similarities that quantify how well the embedding aligns with its identity.
+                            </p>
+                            <p>
+                                The <b>Class Center Angular Similarity (CCS)</b> measures how closely an embedding aligns
+                                with the
+                                center of its own class:
+                            </p>
+                            <p class="has-text-centered">
+                                \( CCS_{x_i} = \frac{z_i^\top \mu_{y_i}}{\|z_i\|_2 \, \|\mu_{y_i}\|_2} \).
+                            </p>
+                            <p>
+                                The <b>Nearest Nonmatch Class Center Angular Similarity (NNCCS)</b> measures its similarity
+                                to the most
+                                confusable impostor class:
+                            </p>
+                            <p class="has-text-centered">
+                                \( NNCCS_{x_i} = \max_{\,j \neq y_i} \frac{z_i^\top \mu_j}{\|z_i\|_2 \, \|\mu_j\|_2} \).
+                            </p>
+                            <p>
+                                Their difference defines the <b>Class Center Angular Separation (CCAS)</b>:
+                            </p>
+                            <p class="has-text-centered">
+                                \( CCAS_{x_i} = CCS_{x_i} - NNCCS_{x_i} \).
+                            </p>
+                            <p>
+                                A natural cutoff emerges at \( CCAS > 0 \), indicating that an embedding is
+                                closer to its own
+                                class center than to any impostor. This provides a principled, parameter-free definition of
+                                recognizability grounded in the encoder’s decision geometry.
+                            </p>
+
+                            <h3 class="title is-4 has-text-centered">Recognizability Prediction Network</h3>
+                            <p>
+                                To predict recognizability directly from images, TransFIRA extends a pretrained backbone
+                                with a lightweight
+                                <b>recognizability prediction head</b> implemented as a linear layer.
+                                The network outputs predicted scores for both CCS and CCAS:
+                            </p>
+                            <p class="has-text-centered">
+                                \( \hat{\mathbf{r}}_i = [\hat{CCS}_{x_i},\, \hat{CCAS}_{x_i}]^\top = h_\psi(\phi(x_i)) \)
+                            </p>
+                            <p>
+                                Training is performed end-to-end with mean squared error against ground-truth
+                                recognizability labels derived from the encoder itself. Fine-tuning both the backbone and
+                                head ensures recognizability remains encoder-specific, efficient to train, and fully
+                                aligned with the model’s internal representation.
+                            </p>
+
+                            <h3 class="title is-4 has-text-centered">Recognizability-Informed Template Aggregation</h3>
+                            <p>
+                                In template-based recognition benchmarks such as BRIAR and IJB-C, multiple images of a
+                                subject are combined
+                                into a single representation. TransFIRA uses predicted recognizability scores to guide this
+                                aggregation through two complementary steps:
+                            </p>
+                            <ul>
+                                <li>
+                                    <b>Filtering:</b> Images with predicted \( CCAS > 0 \) are retained,
+                                    ensuring that only frames confidently recognized by the encoder contribute to the
+                                    template.
+                                </li>
+                                <li>
+                                    <b>Weighting:</b> Each remaining embedding is weighted by its predicted CCS before
+                                    averaging,
+                                    emphasizing compact, reliable samples most representative of the class.
+                                </li>
+                            </ul>
+                            <p>
+                                These operations form a recognizability-informed aggregation strategy that is both
+                                interpretable and parameter-free. Filtering ensures only geometrically valid samples are
+                                included, while weighting strengthens alignment with the class center, jointly improving
+                                accuracy and explainability.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section" id="BibTeX">
-        <div class="container is-max-desktop content">
-            <h2 class="title">BibTeX</h2>
-            <div class="bibtex-container"
-                style="position: relative; background: #f5f5f5; border-radius: 8px; padding: 0.5rem;">
-                <button class="copy-code-btn" id="copy-btn"
-                    style="position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.5rem; background: #ffffff; border: 1px solid #e5e5e5; border-radius: 4px; color: #595959; font-size: 1rem; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; z-index: 10; line-height: 1;">
-                    <i class="fa fa-copy"></i>
-                </button>
-                <pre><code id="bibtex-content">@InProceedings{Tu2026TransFIRA,
+        <section class="section results-section" id="results">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-full-width">
+                        <h2 class="title is-3">Results</h2>
+                        <div class="content has-text-justified">
+                            <figure>
+                                <picture>
+                                    <!-- The two ROC panels are one figure under one caption, so they are
+                                         a single stacked image. As two files they also rendered at
+                                         different widths (120% and 100%), and the 120% one had its right
+                                         edge silently clipped by the page's overflow-x: hidden. -->
+                                    <source srcset="./static/images/roc_combined.webp?v=2026.07.31.3" type="image/webp">
+                                    <img src="./static/images/roc_combined.png?v=2026.07.31.3"
+                                        alt="Overall ROC analysis. Top: template-level ROC comparisons across IQA methods. Bottom: ablation of CCAS-based filtering and CCS-based weighting."
+                                        loading="lazy" class="figure-full">
+                                </picture>
+                                <figcaption class="has-text-justified">
+                                    Fig.&nbsp;2: <b>Overall ROC analysis.</b> Top: Template-level ROC comparisons
+                                    across different IQA methods; for clarity, only the strongest variant of each is shown.
+                                    Bottom: Ablation study illustrating the individual and combined effects of CCAS-based
+                                    filtering and CCS-based weighting. Metrics correspond to Table&nbsp;II, and <em>Average
+                                        (Baseline)</em> denotes uniform mean aggregation.
+                                </figcaption>
+                            </figure>
+
+                            <figure>
+                                <picture>
+                                    <source srcset="./static/images/tar_results.webp?v=2026.07.31.3" type="image/webp">
+                                    <img src="./static/images/tar_results.png?v=2026.07.31.3"
+                                        alt="Table of overall ROC performance: TAR at fixed FMRs for BRIAR Protocol 3.1 and IJB-C, comparing our CCAS filter and filter-plus-weight variants against FIQA-weighted and uniform-aggregation baselines."
+                                        loading="lazy" style="width:100%; height:auto;">
+                                </picture>
+                                <figcaption class="has-text-justified">
+                                    TABLE&nbsp;II: <b>Overall ROC performance.</b> TAR at fixed FMRs for BRIAR
+                                    Protocol&nbsp;3.1 and IJB-C using the backbones in Section&nbsp;IV-B. All baseline
+                                    methods perform <em>weighted</em> aggregation using FIQA scores, while our <b>CCAS
+                                        Filter</b> and <b>Filter&nbsp;+&nbsp;Weight</b> apply our
+                                    \( CCAS > 0 \) cutoff. <em>Average (Baseline)</em> denotes uniform
+                                    aggregation without quality weighting. For each column, the best result is <b><u>bolded
+                                            and underlined</u></b>, and the second-best is <b>bolded</b>.
+                                </figcaption>
+                            </figure>
+
+                            <!-- <figure>
+                                <picture>
+                                    <source srcset="./static/images/erc_auc_results.webp?v=2026.07.31.3" type="image/webp">
+                                    <img src="./static/images/erc_auc_results.png?v=2026.07.31.3" alt="Image-level recognizability evaluation"
+                                        loading="lazy" style="width:100%; height:auto;">
+                                </picture>
+                                <figcaption class="has-text-justified">
+                                    TABLE&nbsp;III: <b>Image-level recognizability evaluation.</b> Image-level Spearman
+                                    correlation (SC) and FNMR–ERC AUC at fixed FMRs for BRIAR&nbsp;Protocol&nbsp;3.1 and
+                                    IJB-C, using the backbones in Section&nbsp;§X.Y. SC is computed against CCS for all
+                                    methods except for <b>Ours (CCAS)</b>, where it is computed against CCAS. For each
+                                    dataset and backbone, the method with the highest SC or lowest AUC is highlighted in
+                                    <b><u>bold and underlined</u></b>, while the second-best is shown in <b>bold</b>.
+                                </figcaption>
+                            </figure> -->
+
+                            <figure>
+                                <picture>
+                                    <source srcset="./static/images/body_results.webp?v=2026.07.31.3" type="image/webp">
+                                    <img src="./static/images/body_results.png?v=2026.07.31.3"
+                                        alt="Table of TAR at fixed FMRs for body recognition on BRIAR Protocol 3.1 using the SemReID encoder, comparing our CCAS filter and filter-plus-weight variants against the FIQA baselines."
+                                        loading="lazy" class="table-iv-image">
+                                </picture>
+                                <figcaption class="has-text-justified">
+                                    TABLE&nbsp;IV: <b>TAR at fixed FMRs for body recognition on BRIAR Protocol 3.1 using the
+                                        SemReID encoder.</b> The method with the best performance for each operating point
+                                    is <b>bolded</b>. Full results are reported in Appendix&nbsp;B.
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="BibTeX">
+            <div class="container is-max-desktop content">
+                <h2 class="title is-3">BibTeX</h2>
+                <div class="bibtex-container">
+                    <button class="copy-code-btn" id="copy-btn" aria-label="Copy BibTeX to clipboard">
+                        <i class="fa fa-copy"></i>
+                    </button>
+                    <pre><code id="bibtex-content">@InProceedings{Tu2026TransFIRA,
     author    = {Tu, Allen and Narayan, Kartik and Gleason, Joshua and Xu, Jennifer and Meyn, Matthew and Goldstein, Tom and Patel, Vishal M.},
     title     = {TransFIRA: Transfer Learning for Face Image Recognizability Assessment},
     booktitle = {Proceedings of the IEEE 20th International Conference on Automatic Face and Gesture Recognition (FG)},
@@ -505,31 +608,36 @@
     doi       = {10.1109/FG67764.2026.11556959},
     url       = {https://transfira.github.io/}
 }</code></pre>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container">
             <div class="content has-text-centered">
                 <a class="icon-link" href="https://arxiv.org/pdf/2510.06353" target="_blank" rel="noopener noreferrer"
-                    title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment">
-                    <i class="fas fa-file-pdf"></i>
+                    title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
+                    aria-label="Paper PDF on arXiv">
+                    <i class="fas fa-file-pdf" aria-hidden="true"></i>
                 </a>
-                <a class="icon-link" href="https://arxiv.org/abs/2510.06353" target="_blank" rel="noopener noreferrer">
-                    <i class="ai ai-arxiv"></i>
+                <a class="icon-link" href="https://arxiv.org/abs/2510.06353" target="_blank" rel="noopener noreferrer"
+                    aria-label="arXiv abstract page">
+                    <i class="ai ai-arxiv" aria-hidden="true"></i>
                 </a>
-                <a class="icon-link" href="static/files/transfira_poster.pdf?v=2026.03.08.1" target="_blank"
+                <a class="icon-link" href="static/files/transfira_poster.pdf?v=2026.07.31.3" target="_blank"
                     rel="noopener noreferrer"
-                    title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment">
-                    <i class="fas fa-image"></i>
+                    title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
+                    aria-label="Poster PDF">
+                    <i class="fas fa-image" aria-hidden="true"></i>
                 </a>
-                <a class="icon-link" href="https://youtu.be/E7kEIS1PW1I" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-youtube"></i>
+                <a class="icon-link" href="https://youtu.be/E7kEIS1PW1I" target="_blank" rel="noopener noreferrer"
+                    aria-label="Talk video on YouTube">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
                 </a>
                 <a class="icon-link" href="https://github.com/tuallen/transfira" target="_blank"
-                    rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
+                    rel="noopener noreferrer" aria-label="Code on GitHub">
+                    <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="columns is-centered">
