@@ -2,6 +2,23 @@
 <html lang="en">
 
 <head>
+    <!-- Theme, set before anything paints. This has to be an inline, non-deferred
+         script at the very top of <head>: a deferred file would let the page paint in
+         the wrong theme and then correct it, which is a visible flash on every load. -->
+    <script>
+        (function () {
+            var t = 'light';
+            try { t = localStorage.getItem('theme-preference') || 'light'; } catch (e) { }
+            document.documentElement.setAttribute('data-theme', t);
+            // Also stamp the browser-chrome colour here rather than leaving it to the
+            // deferred switcher, so a page arriving dark never shows white chrome first.
+            document.addEventListener('DOMContentLoaded', function () {
+                var m = document.querySelector('meta[name="theme-color"]');
+                if (m) m.setAttribute('content', t === 'dark' ? '#000000' : '#ffffff');
+            });
+        })();
+    </script>
+
     <meta charset="utf-8">
     <meta name="description"
         content="TransFIRA: Transfer Learning for Face Image Recognizability Assessment. Learn explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.">
@@ -174,28 +191,30 @@
     <!-- Fonts. Noto Sans is self-hosted (see tools/build-webfonts.sh); Google Sans
          is proprietary, so it stays on Google's CDN but is loaded without
          blocking the first paint. -->
-    <link rel="preload" href="./static/webfonts/noto-sans-latin.woff2?v=2026.07.31.3" as="font"
+    <link rel="preload" href="./static/webfonts/noto-sans-latin.woff2?v=2026.08.01.3" as="font"
         type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="./static/css/noto-sans.css?v=2026.07.31.3">
+    <link rel="stylesheet" href="./static/css/noto-sans.css?v=2026.08.01.3">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans&display=swap"
         media="print" onload="this.media='all'">
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans&display=swap">
     </noscript>
 
-    <link rel="stylesheet" href="./static/css/bulma.min.css?v=2026.07.31.3">
-    <link rel="stylesheet" href="./static/css/rhythm.css?v=2026.07.31.3">
-    <link rel="stylesheet" href="./static/css/icons.css?v=2026.07.31.3">
-    <link rel="stylesheet" href="./static/css/pdf-modal.css?v=2026.07.31.3">
-    <link rel="stylesheet" href="./static/css/index.css?v=2026.07.31.3">
-    <link rel="stylesheet" href="./static/css/interactions.css?v=2026.07.31.3">
-    <link rel="icon" href="./static/images/favicon.svg?v=2026.07.31.3" type="image/svg+xml">
-    <link rel="icon" href="./static/images/favicon.png?v=2026.07.31.3" type="image/png" sizes="32x32">
-    <link rel="icon" href="./static/images/favicon.ico?v=2026.07.31.3" sizes="any">
-    <link rel="apple-touch-icon" href="./static/images/favicon.png?v=2026.07.31.3">
+    <link rel="stylesheet" href="./static/css/bulma.min.css?v=2026.08.01.3">
+    <link rel="stylesheet" href="./static/css/theme.css?v=2026.08.01.3">
+    <link rel="stylesheet" href="./static/css/rhythm.css?v=2026.08.01.3">
+    <link rel="stylesheet" href="./static/css/icons.css?v=2026.08.01.3">
+    <link rel="stylesheet" href="./static/css/pdf-modal.css?v=2026.08.01.3">
+    <link rel="stylesheet" href="./static/css/index.css?v=2026.08.01.3">
+    <link rel="stylesheet" href="./static/css/interactions.css?v=2026.08.01.3">
+    <link rel="icon" href="./static/images/favicon.svg?v=2026.08.01.3" type="image/svg+xml">
+    <link rel="icon" href="./static/images/favicon.png?v=2026.08.01.3" type="image/png" sizes="32x32">
+    <link rel="icon" href="./static/images/favicon.ico?v=2026.08.01.3" sizes="any">
+    <link rel="apple-touch-icon" href="./static/images/favicon.png?v=2026.08.01.3">
 
-    <script defer src="./static/js/script.js?v=2026.07.31.3"></script>
-    <script defer src="./static/js/pdf-modal.js?v=2026.07.31.3"></script>
+    <script defer src="./static/js/script.js?v=2026.08.01.3"></script>
+    <script defer src="./static/js/pdf-modal.js?v=2026.08.01.3"></script>
+    <script defer src="./static/js/theme-switcher.js?v=2026.08.01.3"></script>
     <!-- tex-chtml, not tex-mml-chtml: the -mml- bundle adds a MathML *input*
          processor and there is no <math> markup on this page, so it was dead
          weight. Same CHTML output, so equations render identically. The config
@@ -288,7 +307,7 @@
                                         </a>
                                     </span>
                                     <span class="link-block">
-                                        <a href="static/files/transfira_poster.pdf?v=2026.07.31.3"
+                                        <a href="static/files/transfira_poster.pdf?v=2026.08.01.3"
                                             title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
                                             class="external-link button is-normal is-rounded is-dark" target="_blank"
                                             rel="noopener noreferrer">
@@ -331,8 +350,8 @@
             <div class="container is-max-desktop">
                 <div class="hero-body">
                     <picture>
-                        <source srcset="./static/images/teaser.webp?v=2026.07.31.3" type="image/webp">
-                        <img src="./static/images/teaser.png?v=2026.07.31.3"
+                        <source srcset="./static/images/teaser.webp?v=2026.08.01.3" type="image/webp">
+                        <img class="teaser-figure" src="./static/images/teaser.png?v=2026.08.01.3"
                             alt="TransFIRA overview: a frozen pretrained encoder embeds training images and compares each embedding to the class centers to derive its CCS and CCAS recognizability scores, which supervise a lightweight recognizability prediction head on a fine-tuned copy of the encoder; at right, example BRIAR Protocol 3.1 faces labeled with their CCS and NNCCS values and a histogram of the CCS and NNCCS cosine-similarity distributions."
                             fetchpriority="high" style="width:100%;height:auto;">
                     </picture>
@@ -524,8 +543,8 @@
                                          a single stacked image. As two files they also rendered at
                                          different widths (120% and 100%), and the 120% one had its right
                                          edge silently clipped by the page's overflow-x: hidden. -->
-                                    <source srcset="./static/images/roc_combined.webp?v=2026.07.31.3" type="image/webp">
-                                    <img src="./static/images/roc_combined.png?v=2026.07.31.3"
+                                    <source srcset="./static/images/roc_combined.webp?v=2026.08.01.3" type="image/webp">
+                                    <img src="./static/images/roc_combined.png?v=2026.08.01.3"
                                         alt="Overall ROC analysis. Top: template-level ROC comparisons across IQA methods. Bottom: ablation of CCAS-based filtering and CCS-based weighting."
                                         loading="lazy" class="figure-full">
                                 </picture>
@@ -540,10 +559,10 @@
 
                             <figure>
                                 <picture>
-                                    <source srcset="./static/images/tar_results.webp?v=2026.07.31.3" type="image/webp">
-                                    <img src="./static/images/tar_results.png?v=2026.07.31.3"
+                                    <source srcset="./static/images/tar_results.webp?v=2026.08.01.3" type="image/webp">
+                                    <img src="./static/images/tar_results.png?v=2026.08.01.3"
                                         alt="Table of overall ROC performance: TAR at fixed FMRs for BRIAR Protocol 3.1 and IJB-C, comparing our CCAS filter and filter-plus-weight variants against FIQA-weighted and uniform-aggregation baselines."
-                                        loading="lazy" style="width:100%; height:auto;">
+                                        loading="lazy" class="figure-full">
                                 </picture>
                                 <figcaption class="has-text-justified">
                                     TABLE&nbsp;II: <b>Overall ROC performance.</b> TAR at fixed FMRs for BRIAR
@@ -558,9 +577,9 @@
 
                             <!-- <figure>
                                 <picture>
-                                    <source srcset="./static/images/erc_auc_results.webp?v=2026.07.31.3" type="image/webp">
-                                    <img src="./static/images/erc_auc_results.png?v=2026.07.31.3" alt="Image-level recognizability evaluation"
-                                        loading="lazy" style="width:100%; height:auto;">
+                                    <source srcset="./static/images/erc_auc_results.webp?v=2026.08.01.3" type="image/webp">
+                                    <img src="./static/images/erc_auc_results.png?v=2026.08.01.3" alt="Image-level recognizability evaluation"
+                                        loading="lazy" class="figure-full">
                                 </picture>
                                 <figcaption class="has-text-justified">
                                     TABLE&nbsp;III: <b>Image-level recognizability evaluation.</b> Image-level Spearman
@@ -574,8 +593,8 @@
 
                             <figure>
                                 <picture>
-                                    <source srcset="./static/images/body_results.webp?v=2026.07.31.3" type="image/webp">
-                                    <img src="./static/images/body_results.png?v=2026.07.31.3"
+                                    <source srcset="./static/images/body_results.webp?v=2026.08.01.3" type="image/webp">
+                                    <img src="./static/images/body_results.png?v=2026.08.01.3"
                                         alt="Table of TAR at fixed FMRs for body recognition on BRIAR Protocol 3.1 using the SemReID encoder, comparing our CCAS filter and filter-plus-weight variants against the FIQA baselines."
                                         loading="lazy" class="table-iv-image">
                                 </picture>
@@ -625,7 +644,7 @@
                     aria-label="arXiv abstract page">
                     <i class="ai ai-arxiv" aria-hidden="true"></i>
                 </a>
-                <a class="icon-link" href="static/files/transfira_poster.pdf?v=2026.07.31.3" target="_blank"
+                <a class="icon-link" href="static/files/transfira_poster.pdf?v=2026.08.01.3" target="_blank"
                     rel="noopener noreferrer"
                     title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
                     aria-label="Poster PDF">
@@ -639,6 +658,17 @@
                     rel="noopener noreferrer" aria-label="Code on GitHub">
                     <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
+                <!-- Theme toggle. A <button> rather than an <a>: it performs an action on
+                     this page instead of going anywhere, so it belongs in the tab order
+                     as a button and needs no href. The sun and moon are stacked inside a
+                     one-em window and slide past each other on hover. -->
+                <button type="button" class="icon-link" id="theme-toggle"
+                    aria-label="Switch to dark mode" aria-pressed="false">
+                    <span class="theme-icon-wrap">
+                        <i class="fas fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
+                        <i class="fas fa-moon theme-icon theme-icon-moon" aria-hidden="true"></i>
+                    </span>
+                </button>
             </div>
             <div class="columns is-centered">
                 <div class="column is-8">
