@@ -111,7 +111,10 @@ body {
   font-weight: bold;
 }
 
-.publication-authors a {
+/* Author names are link-coloured; the affiliation line beneath them is not. Both live
+   in `.publication-authors`, so the institution links carry `.plain-link` and are
+   excluded here — see the note in theme.css. */
+.publication-authors a:not(.plain-link) {
   color: var(--link) !important;
 }
 

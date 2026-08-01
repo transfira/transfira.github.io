@@ -214,8 +214,30 @@ a:hover {
   color: var(--text-heading);
 }
 
-.publication-authors a {
+.publication-authors a:not(.plain-link) {
   color: var(--link) !important;
+}
+
+/* ---- Links that are not meant to look like links ----
+ *
+ * The institution and venue lines, and the colophon's copyright holder, are now
+ * anchors so the institution and conference can be reached — but they are headings and
+ * running text, not prose links, and colouring them would turn the affiliation line
+ * into a row of blue and pull the eye off the author names above it. So they inherit
+ * the colour of the text they sit in and are given a hover underline in that same
+ * colour, which is the only resting-state-preserving cue available: at rest they are
+ * pixel-for-pixel what they were before.
+ *
+ * The `.publication-authors a` rules — in this file and again in index.css, which loads
+ * later — both carry `!important`, so neither specificity nor order could beat them
+ * from here; they each exclude `.plain-link` instead. The `!important` below is for the
+ * blanket `a { color: var(--link) }` and `.footer a:not(.icon-link)` rules, which have
+ * no such carve-out.
+ */
+a.plain-link,
+a.plain-link:hover,
+a.plain-link:focus {
+  color: inherit !important;
 }
 
 /* Publication link pills. */
@@ -369,8 +391,8 @@ code {
    `.footer a:not(.icon-link)` above is (0,2,1) and would otherwise win over a bare
    `.colophon a` at (0,1,1), leaving the source glyph link-blue while the copyright
    and the toggle beside it were ink. */
-.footer .colophon a,
-.footer .colophon a:hover,
+.footer .colophon a:not(.plain-link),
+.footer .colophon a:not(.plain-link):hover,
 .footer .colophon .colophon-toggle {
   color: var(--text-heading);
 }

@@ -70,7 +70,8 @@
 .content a:focus-visible,
 figcaption a:focus-visible,
 .publication-authors a:focus-visible,
-.related-item a:focus-visible {
+.related-item a:focus-visible,
+a.plain-link:focus-visible {
   outline: 2px solid var(--link);
   outline-offset: 2px;
   border-radius: 3px;
@@ -98,14 +99,20 @@ figcaption a:focus-visible,
  * links, or a link wrapping an image. */
 .content:not(.colophon) :is(p, li, figcaption) a:not(.button):not(.icon-link),
 .publication-authors a,
-.related-item a:not(.related-bibtex) {
+.related-item a:not(.related-bibtex),
+a.plain-link {
   /* Underline on hover only — a resting underline on every link read as cluttered
      against this much prose. An accessibility note: WCAG 1.4.1 asks for 3:1 between
      link and body text where colour is the sole resting cue, and CVPR blue against
      #4a4a4a is 1.90:1. The mitigation here is that these links are almost always
      author names, venue names or paper titles, i.e. identifiable by content and
      position rather than by colour alone, and the underline appears on both hover
-     and keyboard focus. */
+     and keyboard focus.
+
+     `.plain-link` inherits its text colour, so `currentColor` here resolves to whatever
+     it sits in — black on the affiliation and venue lines, #4a4a4a in the colophon,
+     #f7f9fb in dark mode — and the underline matches without a single hardcoded value
+     or a per-context override. */
   text-decoration: none;
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0 100%;
@@ -119,7 +126,9 @@ figcaption a:focus-visible,
 .publication-authors a:hover,
 .publication-authors a:focus-visible,
 .related-item a:not(.related-bibtex):hover,
-.related-item a:not(.related-bibtex):focus-visible {
+.related-item a:not(.related-bibtex):focus-visible,
+a.plain-link:hover,
+a.plain-link:focus-visible {
   background-size: 100% 1.5px;
 }
 
@@ -135,13 +144,13 @@ figcaption a:focus-visible,
    competing gestures on one glyph. tuallen.github.io draws the same line, via
    `footer a:not(#theme-toggle)`. */
 .footer .icon-link,
-.footer .colophon a {
+.footer .colophon a:not(.plain-link) {
   display: inline-block;
   transition: color 0.2s ease, transform 0.2s ease, filter 0.2s ease;
 }
 
 .footer .icon-link:hover,
-.footer .colophon a:hover {
+.footer .colophon a:not(.plain-link):hover {
   transform: translateY(-3px);
   filter: drop-shadow(0 3px 6px var(--shadow-glow));
 }
@@ -159,12 +168,13 @@ figcaption a:focus-visible,
 
   .content:not(.colophon) :is(p, li, figcaption) a:not(.button):not(.icon-link):hover,
   .publication-authors a:hover,
-  .related-item a:not(.related-bibtex):hover {
+  .related-item a:not(.related-bibtex):hover,
+  a.plain-link:hover {
     background-size: 0% 1.5px;
   }
 
   .footer .icon-link:hover,
-  .footer .colophon a:hover {
+  .footer .colophon a:not(.plain-link):hover {
     transform: none;
     filter: none;
   }
@@ -175,17 +185,18 @@ figcaption a:focus-visible,
   .publication-links .button,
   .link-block .button,
   .footer .icon-link,
-  .footer .colophon a,
+  .footer .colophon a:not(.plain-link),
   .content:not(.colophon) :is(p, li, figcaption) a:not(.button):not(.icon-link),
   .publication-authors a,
-  .related-item a:not(.related-bibtex) {
+  .related-item a:not(.related-bibtex),
+  a.plain-link {
     transition: none;
   }
 
   .publication-links .button:hover,
   .link-block .button:hover,
   .footer .icon-link:hover,
-  .footer .colophon a:hover {
+  .footer .colophon a:not(.plain-link):hover {
     transform: none;
   }
 }
