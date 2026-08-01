@@ -65,6 +65,7 @@
    `.content a` catches links that are direct children of `.content` with no
    paragraph wrapper, as in splatsure's Related Work. */
 .footer .icon-link:focus-visible,
+.footer .colophon .colophon-toggle:focus-visible,
 .copy-code-btn:focus-visible,
 .content a:focus-visible,
 figcaption a:focus-visible,
@@ -95,7 +96,7 @@ figcaption a:focus-visible,
  * `text-decoration` cannot be animated and a border-bottom would move the line box;
  * this does neither. Scoped to prose so it never touches the pill buttons, the icon
  * links, or a link wrapping an image. */
-.content :is(p, li, figcaption) a:not(.button):not(.icon-link),
+.content:not(.colophon) :is(p, li, figcaption) a:not(.button):not(.icon-link),
 .publication-authors a,
 .related-item a:not(.related-bibtex) {
   /* Underline on hover only — a resting underline on every link read as cluttered
@@ -113,8 +114,8 @@ figcaption a:focus-visible,
   transition: background-size 0.3s ease, color 0.2s ease;
 }
 
-.content :is(p, li, figcaption) a:not(.button):not(.icon-link):hover,
-.content :is(p, li, figcaption) a:not(.button):not(.icon-link):focus-visible,
+.content:not(.colophon) :is(p, li, figcaption) a:not(.button):not(.icon-link):hover,
+.content:not(.colophon) :is(p, li, figcaption) a:not(.button):not(.icon-link):focus-visible,
 .publication-authors a:hover,
 .publication-authors a:focus-visible,
 .related-item a:not(.related-bibtex):hover,
@@ -124,12 +125,23 @@ figcaption a:focus-visible,
 
 /* ---- 3. Footer icons ---- */
 
-.footer .icon-link {
+/* The colophon's source glyph is grouped with the icon row rather than with the prose:
+   it is a mark, so it takes the row's lift-and-glow instead of the sliding underline
+   that every other link inside `.content p` gets. `inline-block` is what makes
+   `translateY` apply at all — an inline box ignores it.
+
+   The theme toggle is deliberately not included. It already answers a hover with the
+   sun setting and the moon rising, and stacking a lift on top of that reads as two
+   competing gestures on one glyph. tuallen.github.io draws the same line, via
+   `footer a:not(#theme-toggle)`. */
+.footer .icon-link,
+.footer .colophon a {
   display: inline-block;
   transition: color 0.2s ease, transform 0.2s ease, filter 0.2s ease;
 }
 
-.footer .icon-link:hover {
+.footer .icon-link:hover,
+.footer .colophon a:hover {
   transform: translateY(-3px);
   filter: drop-shadow(0 3px 6px var(--shadow-glow));
 }
@@ -145,13 +157,14 @@ figcaption a:focus-visible,
     box-shadow: none;
   }
 
-  .content :is(p, li, figcaption) a:not(.button):not(.icon-link):hover,
+  .content:not(.colophon) :is(p, li, figcaption) a:not(.button):not(.icon-link):hover,
   .publication-authors a:hover,
   .related-item a:not(.related-bibtex):hover {
     background-size: 0% 1.5px;
   }
 
-  .footer .icon-link:hover {
+  .footer .icon-link:hover,
+  .footer .colophon a:hover {
     transform: none;
     filter: none;
   }
@@ -162,7 +175,8 @@ figcaption a:focus-visible,
   .publication-links .button,
   .link-block .button,
   .footer .icon-link,
-  .content :is(p, li, figcaption) a:not(.button):not(.icon-link),
+  .footer .colophon a,
+  .content:not(.colophon) :is(p, li, figcaption) a:not(.button):not(.icon-link),
   .publication-authors a,
   .related-item a:not(.related-bibtex) {
     transition: none;
@@ -170,7 +184,8 @@ figcaption a:focus-visible,
 
   .publication-links .button:hover,
   .link-block .button:hover,
-  .footer .icon-link:hover {
+  .footer .icon-link:hover,
+  .footer .colophon a:hover {
     transform: none;
   }
 }
