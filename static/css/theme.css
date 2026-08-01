@@ -104,11 +104,17 @@
   --border-hover: #9a9a9a;
   --btn-bg: #1e1e1e;
   --btn-bg-hover: #2c2c2c;
-  --btn-text: #e6edf3;
+  /* White, matching light mode. A control's label should not be dimmer than the prose
+     around it, and #e6edf3 — a leftover from an earlier palette draft that the page text
+     moved on from — was. 16.67:1 on the pill. The halation reason for keeping body copy
+     just short of white does not apply to a few short labels on a mid-grey pill. */
+  --btn-text: #ffffff;
 
   --dot: #6e7681;
   --dot-hover: #9aa4af;
-  --dot-active: #e6edf3;
+  /* The active dot is the brightest mark in the control, so it takes white too: it has
+     to separate from the inactive #6e7681 (4.59:1 between them, up from 3.89:1). */
+  --dot-active: #ffffff;
   --arrow: #c9d1d9;
 
   /* A soft drop shadow is nearly invisible against a dark page, so these are
