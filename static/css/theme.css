@@ -26,18 +26,15 @@
  * look recessive next to its own headings. Hierarchy is carried by size and weight
  * instead, which is where it belongs.
  *
- * 18.87:1 is more than twice the light theme's body contrast (8.86:1), so nothing here
- * is dim — the earlier values were simply more conservative than they needed to be.
+ *   --text / --text-heading  #f7f9fb on #000000 = 19.90:1   (body copy and headings)
+ *   --text-muted             #a6b0bb on #000000 =  9.55:1   (captions, notes)
+ *   --link                   #6cb6ff on #000000 =  9.77:1   (CVPR blue, lightened)
+ *   --link on the footer     #6cb6ff on #121212 =  8.72:1
  *
- *   --text-primary   #f7f9fb on #000000 = 19.90:1   (body copy and headings alike)
- *   --text-muted     #a6b0bb on #000000 =  9.55:1   (captions, notes)
- *   --text-muted     #9aa4af on #0d1117 =  7.48:1   (captions, notes)
- *   --link           #6cb6ff on #0d1117 =  8.81:1   (CVPR blue, lightened)
- *   --link on footer #6cb6ff on #161b22 =  8.05:1
- *
- * All well past the 4.5:1 WCAG AA asks for body text. The link blue is lightened
- * rather than kept at rgb(4,118,208), which measures 4.06:1 on this background and
- * would fail — it is the same hue family, so the pages still read as "CVPR blue
+ * All far past the 4.5:1 WCAG AA asks of body text — 19.90:1 is more than twice the
+ * light theme's own body contrast of 8.86:1, so nothing here is dim. The link blue is
+ * lightened rather than kept at rgb(4,118,208), which measures 4.51:1 against pure black
+ * and so fails AA; it is the same hue family, so the pages still read as "CVPR blue
  * links", just at a luminance that works on a dark surface.
  */
 
@@ -157,7 +154,7 @@ body {
    caption takes the caption's colour rather than jumping out of it.
 
    Not scoped to `.content`: several captions on these pages sit in a <figure> with no
-   `.content` wrapper, and a bold in one of those kept Bulma's near-black — 1.43:1 once
+   `.content` wrapper, and a bold in one of those kept Bulma's near-black — 1.74:1 once
    the page went dark. */
 strong,
 b {
