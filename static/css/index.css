@@ -282,98 +282,38 @@ figcaption {
   }
 }
 
-/* ---- Display equations on narrow screens ----
+/* ---- Display equations ----
  *
- * MathJax lays a display equation out at its intrinsic width and nothing clips it, so
- * a formula wider than the viewport used to push the whole page sideways.
+ * These formulas were authored to fit a phone, so none of them should ever show a
+ * scrollbar. `overflow: hidden` guarantees no scroll track is ever painted, and
+ * math-fit.js guarantees there is nothing to hide: it measures each equation once
+ * MathJax has typeset it and scales that one by exactly the ratio it needs.
  *
- * This was previously solved with `overflow-x: auto`, which fixed the page but made
- * every display equation a scroll container. Desktop browsers draw overlay scrollbars
- * that appear only while scrolling, so it looked clean — but Android Chrome paints a
- * classic track, putting a bar under all seven equations to accommodate the one that is
- * actually too wide, and then only by ~25px.
+ * A fixed set of `scale()` breakpoints lived here through several revisions. CSS cannot
+ * ask how wide an equation turned out, so any such set is a guess — too weak for the
+ * widest formula on the narrowest screen, and needlessly small for every other one.
+ * Measuring is the only way to be certain everything fits, and being certain is what
+ * lets the overflow stay hidden with no scrollbar anywhere.
  *
- * Shrink to fit instead. `font-size` cannot do it: MathJax writes `font-size: 121.4%`
- * as an inline style on the container, and an inline style beats any stylesheet rule.
- * So the scaling goes on `mjx-math`, the inner box, via a transform. `transform` does
- * not affect layout, so the container is also given a matching height reduction — the
- * scale is small enough that the leftover is a couple of pixels.
- *
- * A reader who wants the fine detail can pinch-zoom, which is how maths is normally
- * read on a phone and does not require a scroll gesture inside a 40px-tall box.
+ * (Originally there were no rules here at all: equations rendered at natural width and
+ * Bulma's `html { overflow-x: hidden }` quietly clipped any that were too wide.)
  */
 mjx-container[display="true"] {
   max-width: 100%;
-  /* Scrollable as a safety net. The scale steps below cover ordinary phone widths, but
-     at 200% text a formula can need ~35% of its natural size — far past the 0.80 floor —
-     and `overflow: hidden` then made the remainder unreachable, which is content loss
-     rather than a nuisance. A scroll container only paints a bar when it actually
-     overflows, so in the common case the scaling means there is nothing to scroll and no
-     bar appears; when scaling is not enough the content stays reachable. */
-  overflow-x: auto;
-  overflow-y: hidden;
+  /* `clip`, not `hidden`. Both suppress the scrollbar, but a `hidden` box is still a
+     scroll container — `scrollLeft` can be moved programmatically and some engines will
+     let a trackpad fling it — whereas `clip` is not scrollable at all. Since math-fit.js
+     guarantees the ink already fits, there is nothing to reach and nothing to scroll to. */
+  overflow: clip;
 }
 
-/* Discrete steps rather than a fluid clamp: `scale()` takes a bare <number>, and
-   `clamp(0.8, 0.35 + 0.14vw, 1)` mixes a unitless value with a length, which is an
-   invalid calc() type — the whole declaration is dropped and nothing scales. Three
-   breakpoints cover the range; the widest formula across these pages needs ~80% to
-   clear a 320px screen. */
-@media screen and (max-width: 480px) {
-  mjx-container[display="true"] > mjx-math {
-    transform: scale(0.92);
-    /* `left top`, not `center top`. A transform does not change layout, so the box keeps
-       its unscaled width and `center` leaves the shrunken content centred on the
-       ORIGINAL centre — hanging off both sides equally, with the right-hand overflow
-       clipped and unreachable under the `overflow: hidden` above. Measured 36.9px of an
-       equation cut off at 320px. Anchoring at the left pulls the content into the box
-       instead; MathJax already centres the equation within `mjx-container`, so the
-       result still reads as centred. */
-    transform-origin: left top;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  mjx-container[display="true"] > mjx-math {
-    transform: scale(0.86);
-  }
-}
-
-@media screen and (max-width: 340px) {
-  mjx-container[display="true"] > mjx-math {
-    transform: scale(0.8);
-  }
-}
-
-/* Inline math must not become a scroll container — that would break the line box — and
-   must not scale independently of the sentence around it. Capping its width is enough:
-   long inline expressions are rare, and the page no longer overflows now that the
-   display equations fit. */
+/* Inline maths is left alone. It sits in a line box, so giving it its own scroll or
+   transform would break the run of text around it, and these expressions are short
+   enough to wrap with the sentence. */
 mjx-container:not([display="true"]) {
   max-width: 100%;
 }
 
-/* Inline maths must not become a scroll container at normal widths — that would break
-   the line box. But a long inline expression can still be wider than a small phone, and
-   because it is `display: inline` a `max-width` does nothing to it, so nothing clips it
-   and it drags the whole page sideways. Allowing it to scroll on its own axis only at the
-   narrowest widths keeps the formula complete and the page fixed.
-
-   This matters most where a page has no *display* equations at all — transfira's only wide
-   maths is inline, so the scaling applied to `[display="true"]` never reaches it. */
-/* Unconditional, not behind a width query. A long inline expression is wider than its
-   column whenever the text size is large relative to the viewport, which is a function of
-   both — so a px bound covered only one variable and left the formula clipped at, say,
-   500px with 200% text. `inline-block` is what makes `overflow-x` apply at all: on a
-   non-replaced inline box neither it nor `max-width` has any effect, which is why the
-   overflow was unreachable rather than merely off-screen. The scroll only ever appears on
-   an expression that genuinely does not fit; the rest are untouched. */
-mjx-container:not([display="true"]) {
-  display: inline-block;
-  overflow-x: auto;
-  overflow-y: hidden;
-  vertical-align: middle;
-}
 
 /* ---- The teaser, in dark mode ----
  *
@@ -388,7 +328,7 @@ mjx-container:not([display="true"]) {
  * figure alone is that a card frames it and draws attention to the frame; measured, the
  * opposite happens — bare, the figure's own white *is* the frame, a full-bleed rectangle
  * with square corners butted straight against the page. The card steps the surface back
- * to #f2f4f6, rounds the corners to match every other figure on the page, and insets the
+ * to white, rounds the corners to match every other figure on the page, and insets the
  * artwork so the sheet reads as paper laid on the page rather than a hole cut in it.
  * Consistency matters here too: `roc_combined` directly below already gets the card, and
  * an uncarded teaser above a carded figure looks like one of them is a mistake.
@@ -396,7 +336,7 @@ mjx-container:not([display="true"]) {
  * Scoped to `[data-theme="dark"]`, so light mode keeps the bare full-bleed image it has
  * always had — no background, no padding, no radius, no shadow. */
 [data-theme="dark"] .teaser-figure {
-  background: #f2f4f6;
+  background: #ffffff;
   padding: 0.75rem;
   border-radius: 8px;
   box-sizing: border-box;

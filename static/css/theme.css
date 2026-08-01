@@ -316,7 +316,7 @@ code {
 [data-theme="dark"] .table-iv-image,
 [data-theme="dark"] .figure-centered img,
 [data-theme="dark"] .figure-full {
-  background: #f2f4f6;
+  background: #ffffff;
   padding: 0.75rem;
   border-radius: 8px;
   box-sizing: border-box;
