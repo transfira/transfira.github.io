@@ -1,78 +1,86 @@
+/* TransFIRA — page-specific styles.
+ *
+ * Layout/grid come from the purged Bulma subset (bulma.min.css); icons from
+ * icons.css; the PDF viewer from pdf-modal.css. This file holds only what is
+ * particular to this page.
+ *
+ * Headings fall back to the self-hosted Noto Sans while Google Sans loads
+ * asynchronously, so the async swap is a font change rather than invisible text.
+ */
+
 body {
   font-family: 'Noto Sans', sans-serif;
 }
 
-.video-compare-container {
-  width: 90%;
-  margin: 0 auto;
-  position: relative;
-  display: block;
-  line-height: 0;
+/* ---- Reducing the heading reflow ----
+ *
+ * Google Sans is proprietary, so it cannot be self-hosted and has to arrive from
+ * Google's CDN after first paint. Headings therefore render once in the fallback
+ * and again in Google Sans, and because the two have different metrics the title
+ * re-wrapped as it swapped.
+ *
+ * This is a metrics-matched fallback: Noto Sans is ~4% wider per character than
+ * Google Sans at the same size, so nudging it down closes most of the gap and the
+ * swap becomes a change of shape rather than a change of layout. Google Sans
+ * itself is unaffected; this face is only ever used while it is in flight.
+ */
+@font-face {
+  font-family: 'Google Sans Fallback';
+  src: local('Noto Sans'), local('Helvetica Neue'), local('Arial');
+  size-adjust: 96%;
+  ascent-override: 95%;
+  descent-override: 24%;
+  line-gap-override: 0%;
 }
 
-.videoMerge {
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  display: block;
-  margin: 0 auto;
-  background-size: cover;
+/* Keeps a phrase from being split across lines — but only where the phrase can
+   actually fit. Below ~360px "Face Image Recognizability" is wider than the
+   viewport even at the clamped title size, and an unbreakable span that wide
+   forces the whole page to scroll sideways. A very small screen gets a mid-phrase
+   break, which is the lesser problem. */
+.nowrap {
+  white-space: nowrap;
 }
 
+@media screen and (max-width: 400px) {
+  .nowrap {
+    white-space: normal;
+  }
+}
 
+/* ---- Hero / teaser ---- */
+
+/* Black, matching the other project pages. Without this rule the footer icons
+   fell through to Bulma's link blue, which was the odd one out across the set. */
 .footer .icon-link {
   font-size: 25px;
   color: #000;
 }
 
+/* Vertical breathing room between the paper/arXiv/poster buttons when they wrap
+   onto a second row. Lost when this file was rewritten. */
 .link-block a {
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-.dnerf {
-  font-variant: small-caps;
-}
-
-
-.teaser .hero-body {
-  padding-top: 0;
-  padding-bottom: 3rem;
+.footer .icon-link:hover {
+  color: #363636;
 }
 
 .teaser {
-  font-family: 'Google Sans', sans-serif;
+  font-family: 'Google Sans', 'Google Sans Fallback', 'Noto Sans', sans-serif;
 }
 
-
 .publication-title {
+  color: #000;
   margin-top: -20px;
-}
-
-.publication-banner {
-  max-height: parent;
-
-}
-
-.publication-banner video {
-  position: relative;
-  left: auto;
-  top: auto;
-  transform: none;
-  object-fit: fit;
-}
-
-.publication-header .hero-body {}
-
-.publication-title {
-  font-family: 'Google Sans', sans-serif;
+  font-family: 'Google Sans', 'Google Sans Fallback', 'Noto Sans', sans-serif;
 }
 
 .publication-authors {
   color: #000;
-  font-family: 'Google Sans', sans-serif;
+  font-family: 'Google Sans', 'Google Sans Fallback', 'Noto Sans', sans-serif;
 }
 
 .publication-venue {
@@ -80,45 +88,27 @@ body {
   font-weight: bold;
 }
 
-.publication-awards {
-  color: #ff3860;
-  width: fit-content;
-  font-weight: bolder;
-}
-
-.publication-authors {}
-
 .publication-authors a {
-  color: hsl(204, 60%, 30%) !important;
-}
-
-.publication-authors a:hover {
-  text-decoration: underline;
+  color: var(--link) !important;
 }
 
 .author-block {
   display: inline-block;
 }
 
-.publication-banner img {}
-
-.publication-authors {
-  /*color: #4286f4;*/
-}
-
-
+/* The embedded talk gets the same raised surface as the other media on the page,
+   so the player reads as an inset object rather than a hole cut in the layout.
+   The shadow sits on this wrapper, not the <iframe>: `overflow: hidden` is what
+   clips the player to the rounded corners and would clip a child's shadow, but an
+   element's own shadow still paints outside its clip. */
 .publication-video {
   position: relative;
   width: 100%;
   height: 0;
   padding-bottom: 56.25%;
-
   overflow: hidden;
   border-radius: 10px !important;
-}
-
-.publication-image-half {
-  width: 50;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
 }
 
 .publication-video iframe {
@@ -129,284 +119,91 @@ body {
   height: 100%;
 }
 
-.publication-body img {}
+/* ---- BibTeX block ----
+   Was a long inline style attribute on both the container and its button. The
+   button is absolutely positioned inside the container: without that it fell into
+   normal flow and rendered above the citation instead of on top of it. */
 
-.results-carousel {
-  overflow: hidden;
-
-}
-
-.results-carousel .item {
-  margin: 5px;
-  /* overflow: hidden; */
-  border: 1px solid #bbb;
-  border-radius: 10px;
-  padding: 0;
-  font-size: 0;
-}
-
-.results-carousel video {
-  margin: 0;
-  width: 100%;
-}
-
-.interpolation-panel {
+.bibtex-container {
+  position: relative;
   background: #f5f5f5;
-  border-radius: 10px;
+  border-radius: 8px;
+  padding: 0.5rem;
 }
 
-.interpolation-panel .interpolation-image {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.interpolation-video-column {}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-#interpolation-image-wrapper {
-  width: 100%;
-}
-
-#interpolation-image-wrapper img {
-  border-radius: 5px;
-}
-
-.bal-container-small {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  cursor: grab;
-  overflow: hidden;
-  border-radius: 10px;
-  margin: 5px;
-}
-
-.bal-container-big {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  cursor: grab;
-  overflow: hidden;
-}
-
-.bal-after {
-  display: block;
+.copy-code-btn {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.bal-before {
-  display: block;
-  position: absolute;
-  top: 0;
-  /* right: 0; */
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 15;
-  overflow: hidden;
-}
-
-.bal-before-inset {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.bal-after img,
-.bal-before img {
-  object-fit: cover;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-position: 50% 50%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-.bal-beforePosition {
-  background: #121212;
-  color: #fff;
-  left: 0;
-  pointer-events: none;
-  border-radius: 0.2rem;
-  padding: 2px 10px;
-}
-
-.bal-afterPosition {
-  background: #121212;
-  color: #fff;
-  right: 0;
-  pointer-events: none;
-  border-radius: 0.2rem;
-  padding: 2px 10px;
-}
-
-.beforeLabel {
-  position: absolute;
-  bottom: 0;
-  margin: 1rem;
-  font-size: 1em;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-.afterLabel {
-  position: absolute;
-  bottom: 0;
-  margin: 1rem;
-  font-size: 1em;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-.bal-handle {
-  height: 41px;
-  width: 41px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -20px;
-  margin-top: -21px;
-  border: 2px solid #fff;
-  border-radius: 1000px;
-  z-index: 20;
-  pointer-events: none;
-  box-shadow: 0 0 10px rgb(12, 12, 12);
-}
-
-.handle-left-arrow,
-.handle-right-arrow {
-  width: 0;
-  height: 0;
-  border: 6px inset transparent;
-  position: absolute;
-  top: 50%;
-  margin-top: -6px;
-}
-
-.handle-left-arrow {
-  border-right: 6px solid #fff;
-  left: 50%;
-  margin-left: -17px;
-}
-
-.handle-right-arrow {
-  border-left: 6px solid #fff;
-  right: 50%;
-  margin-right: -17px;
-}
-
-.bal-handle::before {
-  bottom: 50%;
-  margin-bottom: 20px;
-  box-shadow: 0 0 10px rgb(12, 12, 12);
-}
-
-.bal-handle::after {
-  top: 50%;
-  margin-top: 20.5px;
-  box-shadow: 0 0 5px rgb(12, 12, 12);
-}
-
-.bal-handle::before,
-.bal-handle::after {
-  content: " ";
-  display: block;
-  width: 2px;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
   background: #fff;
-  height: 9999px;
-  position: absolute;
-  left: 50%;
-  margin-left: -1.5px;
+  /* Was #e5e5e5, 1.26:1 against the button's own white fill — a control boundary
+     WCAG 1.4.11 asks to reach 3:1. The measurement that matters is against the
+     #f5f5f5 code block the button sits on, not its own fill: #8f8f8f gave 3.23:1
+     inward but only 2.97:1 outward, so #858585 is used instead — 3.45:1 and 3.17:1,
+     clearing 3:1 on both edges while still reading as quiet chrome. */
+  border: 1px solid #858585;
+  border-radius: 4px;
+  color: #595959;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-
-.figure-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    /*border: 1px solid #ccc;*/
-    border-radius: 8px;
+/* Hover used to lighten the border to #b5b5b5 — 2.05:1, less visible than at rest,
+   so the feedback made the control harder to see. Darker instead. */
+.copy-code-btn:hover {
+  border-color: #6b6b6b;
+  color: #363636;
 }
 
-.column.is-one-third {
-    flex: 0 0 33%; /* Allow each column to take up more space */
-    max-width: 33%; /* Ensures three images stay on one row */
-    padding: 0;
-    justify-content: center;
+.copy-code-btn.copied {
+  color: #257953;
+  border-color: #257953;
 }
 
+/* ---- Result figures ---- */
+
+/* Bulma insets `.content figure` by 2em either side, which held these plots 32px
+   narrower than the prose above them. A bare `figure` selector cannot undo it — one
+   element beats nothing but loses to one class plus one element — so this has to
+   match Bulma's own shape. The narrow-screen block below did the same thing with
+   `!important`, which is why only desktop was affected. */
+.content figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* No shadow or rounding on the result figures here: these are plots and tables
+   lifted from the paper, not photographs, so a raised surface would imply they
+   are separate objects sitting on the page rather than part of the document. The
+   other project pages shadow their media because it is rendered imagery. */
+
+/* Only size and colour here. This page's captions all carry `has-text-justified`
+   and are governed by the `.results-section .content figure figcaption` rule below,
+   so a `text-align` or `margin-top` at this specificity would never take effect —
+   they were stating an intent the cascade silently discarded. */
 figcaption {
-    font-size: 0.9rem;
-    color: #555;
-    text-align: center;
-    margin-top: 8px;
+  font-size: 0.9rem;
+  color: #555;
 }
 
-.figure-one-third {
-    margin: 0 !important;
-}
+/* Result captions run long enough to justify, and are not italic — Bulma's
+   .content styles <figcaption> italic by default. Was an identical inline style
+   attribute repeated on all four captions.
 
-.algorithm-container {
-    text-align: left;
-}
-
-.algorithm-container p {
-    margin: 0;
-    padding: 0;
-}
-
-.algorithm-container mjx-container {
-    text-align: left !important;
-    display: block !important;
-}
-
-.highlight-purple {
-    background-color: #DFA6DC; /* Light purple */
-    padding: 0px 2px;
-}
-
-.highlight-blue {
-    background-color: #84D8FF; /* Light blue */
-    padding: 0px 2px;
-}
-
-.highlight-yellow {
-    background-color: #F0EDC7; /* Light yellow */
-    padding: 0px 2px;
-}
-
-.algorithm-container .highlight-yellow, .algorithm-container .highlight-purple, .algorithm-container .highlight-blue {
-    padding: 4px 6px;
+   The selector has to match Bulma's `.content figure figcaption` shape or it loses
+   on specificity: one class plus one element does not outrank one class plus two,
+   so the italic came back when this moved out of the inline style that used to
+   sidestep the cascade entirely. */
+.results-section .content figure figcaption {
+  font-style: normal;
+  margin-top: 0.75em;
 }
 
 .table-iv-image {
@@ -414,25 +211,40 @@ figcaption {
   height: auto;
 }
 
+/* Roman-numeral ordered lists, e.g. "(i) ... (ii) ...". */
 .roman-parens {
-    counter-reset: roman-counter;
-    list-style-type: none !important;
+  counter-reset: roman-counter;
+  list-style-type: none !important;
 }
 
 .roman-parens li {
-    counter-increment: roman-counter;
-    position: relative;
+  counter-increment: roman-counter;
+  position: relative;
 }
 
 .roman-parens li::before {
-    content: "(" counter(roman-counter, lower-roman) ") ";
-    position: absolute;
-    left: -1.8em;
+  content: "(" counter(roman-counter, lower-roman) ") ";
+  position: absolute;
+  left: -1.8em;
 }
 
 @media screen and (max-width: 768px) {
   .table-iv-image {
     width: 100%;
+  }
+
+  /* Bulma pins .title.is-1 at a flat 3rem, which a long paper title cannot fit
+     on a phone. Scale with the viewport, with a floor so it stays a title. */
+  .publication-title.is-1 {
+    font-size: clamp(1.6rem, 7.2vw, 3rem);
+  }
+
+  .is-size-3 {
+    font-size: 1.4rem !important;
+  }
+
+  .is-size-5 {
+    font-size: 1rem !important;
   }
 
   .results-section .content figure {
@@ -447,165 +259,48 @@ figcaption {
   }
 }
 
-/* ════════════════════════════════════════
-   PDF VIEWER MODAL
-   ════════════════════════════════════════ */
-.pdf-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  opacity: 0;
-  transition: opacity 0.25s ease;
+/* ---- Display equations on narrow screens ----
+ *
+ * MathJax lays a display equation out at its intrinsic width and nothing clips it,
+ * so a formula wider than the viewport pushes the whole page sideways — below
+ * ~385px this page could be scrolled horizontally by ~65px. The `math-mobile`
+ * variants already restack the longest formulas, but some remain wider than a
+ * small phone whatever we do with line breaks.
+ *
+ * Letting the container scroll on its own axis keeps the equation legible and
+ * complete while the page itself stays fixed. Applied to the container rather than
+ * the <p>, so surrounding prose is unaffected.
+ */
+mjx-container[display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* Room for the scrollbar so it never sits on top of a glyph. */
+  padding-bottom: 2px;
 }
 
-.pdf-overlay.active {
-  display: flex;
-  flex-direction: column;
+/* Inline math normally must not become a scroll container — that would break the
+   line box. But a long inline expression can still be wider than a small phone,
+   and nothing clips it, so it drags the page sideways. Allowing it to scroll only
+   at the narrowest widths keeps the formula complete and the page fixed. */
+mjx-container:not([display="true"]) {
+  max-width: 100%;
 }
 
-.pdf-overlay.show {
-  opacity: 1;
+@media screen and (max-width: 400px) {
+  mjx-container:not([display="true"]) {
+    display: inline-block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    vertical-align: middle;
+  }
 }
 
-.pdf-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 20px;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e5e5;
-  color: #222222;
-  flex-shrink: 0;
-  position: relative;
-  font-family: 'Google Sans', 'Noto Sans', sans-serif;
-}
-
-.pdf-toolbar-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 1;
-  min-width: 0;
-  z-index: 1;
-}
-
-.pdf-logo-close {
-  color: #363636;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  transition: opacity 0.2s;
-  flex-shrink: 0;
-}
-
-.pdf-logo-close:hover {
-  opacity: 0.7;
-}
-
-.pdf-logo-close .logo-desktop {
-  display: inline-flex;
-}
-
-.pdf-logo-close .logo-mobile {
-  display: none;
-}
-
-.pdf-title {
-  font-family: 'Google Sans', 'Noto Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #222222;
-}
-
-.pdf-toolbar-actions {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.pdf-toolbar-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 16px;
-  border-radius: 6px;
-  border: 1px solid #dbdbdb;
-  background: #f5f5f5;
-  color: #595959;
-  font-family: 'Google Sans', 'Noto Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s;
-  text-decoration: none;
-}
-
-.pdf-toolbar-btn:hover {
-  background: #ffffff;
-  border-color: #363636;
-  color: #363636;
-}
-
-.pdf-toolbar-btn.close-btn {
-  border: none;
-  background: none;
-  font-size: 22px;
-  padding: 4px 8px;
-  line-height: 1;
-  color: #595959;
-}
-
-.pdf-toolbar-btn.close-btn:hover {
-  background: none;
-  border-color: transparent;
-  color: #363636;
-}
-
-.pdf-viewer-container {
-  flex: 1;
-  width: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  background: #f5f5f5;
-}
-
-.pdf-viewer-frame {
+/* Result figures span their column. Replaces a pair of inline widths (one of which
+   was 120% and had its right edge clipped by the page's overflow-x: hidden). */
+.figure-full {
   display: block;
-  border: none;
   width: 100%;
-  height: 100%;
-}
-
-@media (max-width: 640px) {
-  .pdf-toolbar {
-    padding: 10px 14px;
-  }
-
-  .pdf-title {
-    font-size: 13px;
-    flex-grow: 1;
-  }
-
-  .pdf-toolbar-btn span.btn-label {
-    display: none;
-  }
-
-  .pdf-toolbar-btn {
-    padding: 7px 10px;
-  }
-
-  .pdf-logo-close .logo-desktop {
-    display: none;
-  }
-
-  .pdf-logo-close .logo-mobile {
-    display: inline-flex;
-  }
+  height: auto;
+  margin: 0 auto;
 }
