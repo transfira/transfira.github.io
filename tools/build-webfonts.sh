@@ -275,8 +275,13 @@ header = """/* Self-hosted Noto Sans (SIL Open Font License 1.1).
  * tools/build-webfonts.sh - do not edit by hand.
  */
 """
+# Single-backslash escapes: this heredoc is quoted (<<'PY'), so the shell passes the
+# body through verbatim and Python sees exactly what is written here. Doubling them
+# emitted a literal backslash-n before each @font-face, which is an identifier escape
+# in CSS and made the browser parse zero font faces — the self-hosted Noto Sans was
+# preloaded and then never used.
 (root / "static/css/noto-sans.css").write_text(
-    header + "\\n" + "\\n\\n".join(rules) + "\\n")
+    header + "\n" + "\n\n".join(rules) + "\n")
 print("    noto-sans.css written")
 PY
 

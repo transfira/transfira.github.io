@@ -30,13 +30,13 @@
 .publication-links .button:hover,
 .link-block .button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 4px 12px var(--shadow-btn);
 }
 
 .publication-links .button:active,
 .link-block .button:active {
   transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 1px 4px var(--shadow-btn-active);
 }
 
 /* Keyboard focus gets a visible ring; `:focus-visible` keeps it off mouse clicks.
@@ -131,7 +131,7 @@ figcaption a:focus-visible,
 
 .footer .icon-link:hover {
   transform: translateY(-3px);
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.28));
+  filter: drop-shadow(0 3px 6px var(--shadow-glow));
 }
 
 /* ---- Touch devices ----
