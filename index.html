@@ -191,31 +191,31 @@
     <!-- Fonts. Noto Sans is self-hosted (see tools/build-webfonts.sh); Google Sans
          is proprietary, so it stays on Google's CDN but is loaded without
          blocking the first paint. -->
-    <link rel="preload" href="./static/webfonts/noto-sans-latin.woff2?v=2026.08.01.21" as="font"
+    <link rel="preload" href="./static/webfonts/noto-sans-latin.woff2?v=2026.08.02" as="font"
         type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="./static/css/noto-sans.css?v=2026.08.01.21">
+    <link rel="stylesheet" href="./static/css/noto-sans.css?v=2026.08.02">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans&display=swap"
         media="print" onload="this.media='all'">
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans&display=swap">
     </noscript>
 
-    <link rel="stylesheet" href="./static/css/bulma.min.css?v=2026.08.01.21">
-    <link rel="stylesheet" href="./static/css/theme.css?v=2026.08.01.21">
-    <link rel="stylesheet" href="./static/css/rhythm.css?v=2026.08.01.21">
-    <link rel="stylesheet" href="./static/css/icons.css?v=2026.08.01.21">
-    <link rel="stylesheet" href="./static/css/pdf-modal.css?v=2026.08.01.21">
-    <link rel="stylesheet" href="./static/css/index.css?v=2026.08.01.21">
-    <link rel="stylesheet" href="./static/css/interactions.css?v=2026.08.01.21">
-    <link rel="icon" href="./static/images/favicon.svg?v=2026.08.01.21" type="image/svg+xml">
-    <link rel="icon" href="./static/images/favicon.png?v=2026.08.01.21" type="image/png" sizes="32x32">
-    <link rel="icon" href="./static/images/favicon.ico?v=2026.08.01.21" sizes="any">
-    <link rel="apple-touch-icon" href="./static/images/favicon.png?v=2026.08.01.21">
+    <link rel="stylesheet" href="./static/css/bulma.min.css?v=2026.08.02">
+    <link rel="stylesheet" href="./static/css/theme.css?v=2026.08.02">
+    <link rel="stylesheet" href="./static/css/rhythm.css?v=2026.08.02">
+    <link rel="stylesheet" href="./static/css/icons.css?v=2026.08.02">
+    <link rel="stylesheet" href="./static/css/pdf-modal.css?v=2026.08.02">
+    <link rel="stylesheet" href="./static/css/index.css?v=2026.08.02">
+    <link rel="stylesheet" href="./static/css/interactions.css?v=2026.08.02">
+    <link rel="icon" href="./static/images/favicon.svg?v=2026.08.02" type="image/svg+xml">
+    <link rel="icon" href="./static/images/favicon.png?v=2026.08.02" type="image/png" sizes="32x32">
+    <link rel="icon" href="./static/images/favicon.ico?v=2026.08.02" sizes="any">
+    <link rel="apple-touch-icon" href="./static/images/favicon.png?v=2026.08.02">
 
-    <script defer src="./static/js/script.js?v=2026.08.01.21"></script>
-    <script defer src="./static/js/pdf-modal.js?v=2026.08.01.21"></script>
-    <script defer src="./static/js/theme-switcher.js?v=2026.08.01.21"></script>
-    <script defer src="./static/js/math-fit.js?v=2026.08.01.21"></script>
+    <script defer src="./static/js/script.js?v=2026.08.02"></script>
+    <script defer src="./static/js/pdf-modal.js?v=2026.08.02"></script>
+    <script defer src="./static/js/theme-switcher.js?v=2026.08.02"></script>
+    <script defer src="./static/js/math-fit.js?v=2026.08.02"></script>
     <!-- tex-chtml, not tex-mml-chtml: the -mml- bundle adds a MathML *input*
          processor and there is no <math> markup on this page, so it was dead
          weight. Same CHTML output, so equations render identically. The config
@@ -308,7 +308,7 @@
                                         </a>
                                     </span>
                                     <span class="link-block">
-                                        <a href="static/files/transfira_poster.pdf?v=2026.08.01.21"
+                                        <a href="static/files/transfira_poster.pdf?v=2026.08.02"
                                             title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
                                             class="external-link button is-normal is-rounded is-dark" target="_blank"
                                             rel="noopener noreferrer">
@@ -351,8 +351,8 @@
             <div class="container is-max-desktop">
                 <div class="hero-body">
                     <picture>
-                        <source srcset="./static/images/teaser.webp?v=2026.08.01.21" type="image/webp">
-                        <img class="teaser-figure" src="./static/images/teaser.png?v=2026.08.01.21"
+                        <source srcset="./static/images/teaser.webp?v=2026.08.02" type="image/webp">
+                        <img class="teaser-figure" src="./static/images/teaser.png?v=2026.08.02"
                             alt="TransFIRA overview: a frozen pretrained encoder embeds training images and compares each embedding to the class centers to derive its CCS and CCAS recognizability scores, which supervise a lightweight recognizability prediction head on a fine-tuned copy of the encoder; at right, example BRIAR Protocol 3.1 faces labeled with their CCS and NNCCS values and a histogram of the CCS and NNCCS cosine-similarity distributions."
                             fetchpriority="high" style="width:100%;height:auto;">
                     </picture>
@@ -544,8 +544,8 @@
                                          a single stacked image. As two files they also rendered at
                                          different widths (120% and 100%), and the 120% one had its right
                                          edge silently clipped by the page's overflow-x: hidden. -->
-                                    <source srcset="./static/images/roc_combined.webp?v=2026.08.01.21" type="image/webp">
-                                    <img src="./static/images/roc_combined.png?v=2026.08.01.21"
+                                    <source srcset="./static/images/roc_combined.webp?v=2026.08.02" type="image/webp">
+                                    <img src="./static/images/roc_combined.png?v=2026.08.02"
                                         alt="Overall ROC analysis. Top: template-level ROC comparisons across IQA methods. Bottom: ablation of CCAS-based filtering and CCS-based weighting."
                                         loading="lazy" class="figure-full">
                                 </picture>
@@ -560,8 +560,8 @@
 
                             <figure>
                                 <picture>
-                                    <source srcset="./static/images/tar_results.webp?v=2026.08.01.21" type="image/webp">
-                                    <img src="./static/images/tar_results.png?v=2026.08.01.21"
+                                    <source srcset="./static/images/tar_results.webp?v=2026.08.02" type="image/webp">
+                                    <img src="./static/images/tar_results.png?v=2026.08.02"
                                         alt="Table of overall ROC performance: TAR at fixed FMRs for BRIAR Protocol 3.1 and IJB-C, comparing our CCAS filter and filter-plus-weight variants against FIQA-weighted and uniform-aggregation baselines."
                                         loading="lazy" class="figure-full">
                                 </picture>
@@ -578,8 +578,8 @@
 
                             <!-- <figure>
                                 <picture>
-                                    <source srcset="./static/images/erc_auc_results.webp?v=2026.08.01.21" type="image/webp">
-                                    <img src="./static/images/erc_auc_results.png?v=2026.08.01.21" alt="Image-level recognizability evaluation"
+                                    <source srcset="./static/images/erc_auc_results.webp?v=2026.08.02" type="image/webp">
+                                    <img src="./static/images/erc_auc_results.png?v=2026.08.02" alt="Image-level recognizability evaluation"
                                         loading="lazy" class="figure-full">
                                 </picture>
                                 <figcaption class="has-text-justified">
@@ -594,8 +594,8 @@
 
                             <figure>
                                 <picture>
-                                    <source srcset="./static/images/body_results.webp?v=2026.08.01.21" type="image/webp">
-                                    <img src="./static/images/body_results.png?v=2026.08.01.21"
+                                    <source srcset="./static/images/body_results.webp?v=2026.08.02" type="image/webp">
+                                    <img src="./static/images/body_results.png?v=2026.08.02"
                                         alt="Table of TAR at fixed FMRs for body recognition on BRIAR Protocol 3.1 using the SemReID encoder, comparing our CCAS filter and filter-plus-weight variants against the FIQA baselines."
                                         loading="lazy" class="table-iv-image">
                                 </picture>
@@ -629,6 +629,15 @@
     url       = {https://transfira.github.io/}
 }</code></pre>
                 </div>
+                <p class="bibtex-note">
+                    In addition to being an <a href="#talk">oral presentation</a> at <a
+                        href="https://fg2026.ieee-biometrics.org/" target="_blank" rel="noopener noreferrer">FG 2026</a>,
+                    TransFIRA has been invited to submit an extended version to the <a
+                        href="https://ieee-biometrics.org/publications/t-biom/" target="_blank"
+                        rel="noopener noreferrer">IEEE T-BIOM Special Issue</a> on the <a
+                        href="https://fg2026.ieee-biometrics.org/cfp/#awards-and-ieee-tbiom-special-issue"
+                        target="_blank" rel="noopener noreferrer">Best-Ranked Articles of IEEE FG 2026</a>.
+                </p>
             </div>
         </section>
     </main>
@@ -645,7 +654,7 @@
                     aria-label="arXiv abstract page">
                     <i class="ai ai-arxiv" aria-hidden="true"></i>
                 </a>
-                <a class="icon-link" href="static/files/transfira_poster.pdf?v=2026.08.01.21" target="_blank"
+                <a class="icon-link" href="static/files/transfira_poster.pdf?v=2026.08.02" target="_blank"
                     rel="noopener noreferrer"
                     title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
                     aria-label="Poster PDF">
