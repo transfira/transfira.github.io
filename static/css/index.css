@@ -220,6 +220,16 @@ body {
   border-color: var(--copied);
 }
 
+/* The forthcoming-journal-version note under the citation. It is the last child of
+   `.content`, and Bulma only gives a <p> a bottom margin via `:not(:last-child)` —
+   so with no rule here it would sit flush against the code block. A top margin is
+   the right side to set anyway: the gap belongs between the block and the note, not
+   below the note, where the section's own padding already ends the page. */
+.bibtex-note {
+  margin-top: 1em;
+  color: var(--text-muted);
+}
+
 /* ---- Result figures ---- */
 
 /* Bulma insets `.content figure` by 2em either side, which held these plots 32px
