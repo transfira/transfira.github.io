@@ -55,6 +55,16 @@ body {
   }
 }
 
+/* Force the title's line break at its phrase seam; withdraw it once line one
+   no longer fits, where plain wrapping gives the more even shape. `em` to match
+   `.nowrap`: the phrase scales with text size, the column with the viewport. The
+   `&nbsp;` in the markup, not this rule, is what keeps "for" off a line alone. */
+@media screen and (max-width: 34em) {
+  .title-break {
+    display: none;
+  }
+}
+
 /* ---- Hero / teaser ---- */
 
 /* Ink-coloured, matching the other project pages. Without this rule the footer icons
