@@ -21,7 +21,8 @@
 
     <meta charset="utf-8">
     <meta name="description"
-        content="TransFIRA: Transfer Learning for Face Image Recognizability Assessment. Learn explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.">
+        content="TransFIRA learns explainable, encoder-specific face recognizability from embedding geometry for filtering, template aggregation, and biometric assessment.">
+    <meta name="author" content="Allen Tu, Kartik Narayan, Joshua Gleason, Jennifer Xu, Matthew Meyn, Tom Goldstein, Vishal M. Patel">
     <meta name="keywords"
         content="TransFIRA, Face Image Quality Assessment, FIQA, Recognizability Prediction, Class Center Similarity, CCS, CCAS, Transfer Learning, Face Recognition, Body Recognition, Template Aggregation, Explainability, Embedding Geometry, Encoder-grounded, BRIAR, IJB-C, SemReID, Computer Vision, Biometrics, Deep Learning, UMD, Johns Hopkins, Tom Goldstein, Vishal Patel">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,6 +32,22 @@
     <!-- Canonical Link -->
     <link rel="canonical" href="https://transfira.github.io/">
     <meta name="robots" content="index,follow">
+
+    <meta name="citation_title" content="TransFIRA: Transfer Learning for Face Image Recognizability Assessment">
+    <meta name="citation_author" content="Allen Tu">
+    <meta name="citation_author" content="Kartik Narayan">
+    <meta name="citation_author" content="Joshua Gleason">
+    <meta name="citation_author" content="Jennifer Xu">
+    <meta name="citation_author" content="Matthew Meyn">
+    <meta name="citation_author" content="Tom Goldstein">
+    <meta name="citation_author" content="Vishal M. Patel">
+    <meta name="citation_publication_date" content="2026-05">
+    <meta name="citation_conference_title" content="Proceedings of the IEEE 20th International Conference on Automatic Face and Gesture Recognition (FG)">
+    <meta name="citation_doi" content="10.1109/FG67764.2026.11556959">
+    <meta name="citation_arxiv_id" content="2510.06353">
+    <meta name="citation_abstract_html_url" content="https://transfira.github.io/">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2510.06353">
+    <meta name="citation_language" content="en">
 
     <!-- Resource Hints. Only origins the page still contacts: the icon fonts and
          Bulma are self-hosted now, and jQuery is gone entirely. -->
@@ -42,14 +59,15 @@
     <!-- Open Graph Tags -->
     <meta property="og:title" content="TransFIRA: Transfer Learning for Face Image Recognizability Assessment">
     <meta property="og:description"
-        content="Learn explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.">
+        content="TransFIRA learns explainable, encoder-specific face recognizability from embedding geometry for filtering, template aggregation, and biometric assessment.">
     <meta property="og:url" content="https://transfira.github.io/">
     <meta property="og:image" content="https://transfira.github.io/static/images/teaser_card.jpg">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt"
         content="TransFIRA overview diagram: a frozen pretrained encoder embeds training images and compares each embedding to the class centers to derive CCS and CCAS recognizability scores, which supervise a lightweight recognizability prediction head on a fine-tuned copy of the encoder; at right, example BRIAR Protocol 3.1 faces with their CCS and NNCCS values and a histogram of the CCS and NNCCS cosine-similarity distributions.">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:site_name" content="TransFIRA">
     <meta property="og:locale" content="en_US">
 
@@ -57,7 +75,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="TransFIRA: Transfer Learning for Face Image Recognizability Assessment">
     <meta name="twitter:description"
-        content="Learn explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.">
+        content="TransFIRA learns explainable, encoder-specific face recognizability from embedding geometry for filtering, template aggregation, and biometric assessment.">
     <meta name="twitter:image" content="https://transfira.github.io/static/images/teaser_card.jpg">
     <meta name="twitter:image:alt"
         content="TransFIRA overview diagram: a frozen pretrained encoder embeds training images and compares each embedding to the class centers to derive CCS and CCAS recognizability scores, which supervise a lightweight recognizability prediction head on a fine-tuned copy of the encoder; at right, example BRIAR Protocol 3.1 faces with their CCS and NNCCS values and a histogram of the CCS and NNCCS cosine-similarity distributions.">
@@ -142,9 +160,10 @@
           }
         }
       ],
-      "description": "Learn explainable, encoder-specific recognizability assessment from embedding geometry, enabling principled filtering, recognizability-aware template aggregation, state-of-the-art face image quality assessment performance, and generalization to body recognizability assessment.",
+      "description": "TransFIRA learns explainable, encoder-specific face recognizability from embedding geometry for filtering, template aggregation, and biometric assessment.",
       "image": "https://transfira.github.io/static/images/teaser_card.jpg",
       "datePublished": "2026-05",
+      "dateModified": "2026-10-30",
       "dateCreated": "2025-10-07",
       "identifier": [
         {
@@ -191,31 +210,31 @@
     <!-- Fonts. Noto Sans is self-hosted (see tools/build-webfonts.sh); Google Sans
          is proprietary, so it stays on Google's CDN but is loaded without
          blocking the first paint. -->
-    <link rel="preload" href="./static/webfonts/noto-sans-latin.woff2?v=2026.08.02" as="font"
+    <link rel="preload" href="./static/webfonts/noto-sans-latin.woff2?v=2026.10.30" as="font"
         type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="./static/css/noto-sans.css?v=2026.08.02">
+    <link rel="stylesheet" href="./static/css/noto-sans.css?v=2026.10.30">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans&display=swap"
         media="print" onload="this.media='all'">
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans&display=swap">
     </noscript>
 
-    <link rel="stylesheet" href="./static/css/bulma.min.css?v=2026.08.02">
-    <link rel="stylesheet" href="./static/css/theme.css?v=2026.08.02">
-    <link rel="stylesheet" href="./static/css/rhythm.css?v=2026.08.02">
-    <link rel="stylesheet" href="./static/css/icons.css?v=2026.08.02">
-    <link rel="stylesheet" href="./static/css/pdf-modal.css?v=2026.08.02">
-    <link rel="stylesheet" href="./static/css/index.css?v=2026.08.02">
-    <link rel="stylesheet" href="./static/css/interactions.css?v=2026.08.02">
-    <link rel="icon" href="./static/images/favicon.svg?v=2026.08.02" type="image/svg+xml">
-    <link rel="icon" href="./static/images/favicon.png?v=2026.08.02" type="image/png" sizes="32x32">
-    <link rel="icon" href="./static/images/favicon.ico?v=2026.08.02" sizes="any">
-    <link rel="apple-touch-icon" href="./static/images/favicon.png?v=2026.08.02">
+    <link rel="stylesheet" href="./static/css/bulma.min.css?v=2026.10.30">
+    <link rel="stylesheet" href="./static/css/theme.css?v=2026.10.30">
+    <link rel="stylesheet" href="./static/css/rhythm.css?v=2026.10.30">
+    <link rel="stylesheet" href="./static/css/icons.css?v=2026.10.30">
+    <link rel="stylesheet" href="./static/css/pdf-modal.css?v=2026.10.30">
+    <link rel="stylesheet" href="./static/css/index.css?v=2026.10.30">
+    <link rel="stylesheet" href="./static/css/interactions.css?v=2026.10.30">
+    <link rel="icon" href="./static/images/favicon.svg?v=2026.10.30" type="image/svg+xml">
+    <link rel="icon" href="./static/images/favicon.png?v=2026.10.30" type="image/png" sizes="32x32">
+    <link rel="icon" href="./static/images/favicon.ico?v=2026.10.30" sizes="any">
+    <link rel="apple-touch-icon" href="./static/images/favicon.png?v=2026.10.30">
 
-    <script defer src="./static/js/script.js?v=2026.08.02"></script>
-    <script defer src="./static/js/pdf-modal.js?v=2026.08.02"></script>
-    <script defer src="./static/js/theme-switcher.js?v=2026.08.02"></script>
-    <script defer src="./static/js/math-fit.js?v=2026.08.02"></script>
+    <script defer src="./static/js/script.js?v=2026.10.30"></script>
+    <script defer src="./static/js/pdf-modal.js?v=2026.10.30"></script>
+    <script defer src="./static/js/theme-switcher.js?v=2026.10.30"></script>
+    <script defer src="./static/js/math-fit.js?v=2026.10.30"></script>
     <!-- tex-chtml, not tex-mml-chtml: the -mml- bundle adds a MathML *input*
          processor and there is no <math> markup on this page, so it was dead
          weight. Same CHTML output, so equations render identically. The config
@@ -303,7 +322,7 @@
                                         </a>
                                     </span>
                                     <span class="link-block">
-                                        <a href="static/files/transfira_poster.pdf?v=2026.08.02"
+                                        <a href="static/files/transfira_poster.pdf?v=2026.10.30"
                                             title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
                                             class="external-link button is-normal is-rounded is-dark" target="_blank"
                                             rel="noopener noreferrer">
@@ -346,8 +365,8 @@
             <div class="container is-max-desktop">
                 <div class="hero-body">
                     <picture>
-                        <source srcset="./static/images/teaser.webp?v=2026.08.02" type="image/webp">
-                        <img class="teaser-figure" src="./static/images/teaser.png?v=2026.08.02"
+                        <source srcset="./static/images/teaser.webp?v=2026.10.30" type="image/webp">
+                        <img width="4000" height="2000" class="teaser-figure" src="./static/images/teaser.png?v=2026.10.30"
                             alt="TransFIRA overview: a frozen pretrained encoder embeds training images and compares each embedding to the class centers to derive its CCS and CCAS recognizability scores, which supervise a lightweight recognizability prediction head on a fine-tuned copy of the encoder; at right, example BRIAR Protocol 3.1 faces labeled with their CCS and NNCCS values and a histogram of the CCS and NNCCS cosine-similarity distributions."
                             fetchpriority="high" style="width:100%;height:auto;">
                     </picture>
@@ -539,8 +558,8 @@
                                          a single stacked image. As two files they also rendered at
                                          different widths (120% and 100%), and the 120% one had its right
                                          edge silently clipped by the page's overflow-x: hidden. -->
-                                    <source srcset="./static/images/roc_combined.webp?v=2026.08.02" type="image/webp">
-                                    <img src="./static/images/roc_combined.png?v=2026.08.02"
+                                    <source srcset="./static/images/roc_combined.webp?v=2026.10.30" type="image/webp">
+                                    <img width="8435" height="5194" src="./static/images/roc_combined.png?v=2026.10.30"
                                         alt="Overall ROC analysis. Top: template-level ROC comparisons across IQA methods. Bottom: ablation of CCAS-based filtering and CCS-based weighting."
                                         loading="lazy" class="figure-full">
                                 </picture>
@@ -555,8 +574,8 @@
 
                             <figure>
                                 <picture>
-                                    <source srcset="./static/images/tar_results.webp?v=2026.08.02" type="image/webp">
-                                    <img src="./static/images/tar_results.png?v=2026.08.02"
+                                    <source srcset="./static/images/tar_results.webp?v=2026.10.30" type="image/webp">
+                                    <img width="2110" height="950" src="./static/images/tar_results.png?v=2026.10.30"
                                         alt="Table of overall ROC performance: TAR at fixed FMRs for BRIAR Protocol 3.1 and IJB-C, comparing our CCAS filter and filter-plus-weight variants against FIQA-weighted and uniform-aggregation baselines."
                                         loading="lazy" class="figure-full">
                                 </picture>
@@ -573,8 +592,8 @@
 
                             <!-- <figure>
                                 <picture>
-                                    <source srcset="./static/images/erc_auc_results.webp?v=2026.08.02" type="image/webp">
-                                    <img src="./static/images/erc_auc_results.png?v=2026.08.02" alt="Image-level recognizability evaluation"
+                                    <source srcset="./static/images/erc_auc_results.webp?v=2026.10.30" type="image/webp">
+                                    <img width="2110" height="700" src="./static/images/erc_auc_results.png?v=2026.10.30" alt="Image-level recognizability evaluation"
                                         loading="lazy" class="figure-full">
                                 </picture>
                                 <figcaption class="has-text-justified">
@@ -589,8 +608,8 @@
 
                             <figure>
                                 <picture>
-                                    <source srcset="./static/images/body_results.webp?v=2026.08.02" type="image/webp">
-                                    <img src="./static/images/body_results.png?v=2026.08.02"
+                                    <source srcset="./static/images/body_results.webp?v=2026.10.30" type="image/webp">
+                                    <img width="1010" height="240" src="./static/images/body_results.png?v=2026.10.30"
                                         alt="Table of TAR at fixed FMRs for body recognition on BRIAR Protocol 3.1 using the SemReID encoder, comparing our CCAS filter and filter-plus-weight variants against the FIQA baselines."
                                         loading="lazy" class="table-iv-image">
                                 </picture>
@@ -649,7 +668,7 @@
                     aria-label="arXiv abstract page">
                     <i class="ai ai-arxiv" aria-hidden="true"></i>
                 </a>
-                <a class="icon-link" href="static/files/transfira_poster.pdf?v=2026.08.02" target="_blank"
+                <a class="icon-link" href="static/files/transfira_poster.pdf?v=2026.10.30" target="_blank"
                     rel="noopener noreferrer"
                     title="TransFIRA: Transfer Learning for Face Image Recognizability Assessment"
                     aria-label="Poster PDF">

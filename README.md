@@ -130,6 +130,8 @@ the theme switcher, `cache_bust.py` and the `tools/` scripts. Where a fix applie
 to all of them it is made in each, so the shared files are byte-identical once the version query
 strings are normalised. Read any of them as reference code, and borrow freely:
 
+- **[GOFish](https://3dgofish.github.io/)** — [source](https://github.com/3dgofish/3dgofish.github.io)
+- **[RIDE-Splat](https://ridesplat.github.io/)** — [source](https://github.com/ridesplat/ridesplat.github.io)
 - **[PUP 3D-GS](https://pup3dgs.github.io/)** — [source](https://github.com/pup3dgs/pup3dgs.github.io)
 - **[Speedy-Splat](https://speedysplat.github.io/)** — [source](https://github.com/speedysplat/speedysplat.github.io)
 - **[SpeeDe3DGS](https://speede3dgs.github.io/)** — [source](https://github.com/speede3dgs/speede3dgs.github.io)
@@ -137,9 +139,8 @@ strings are normalised. Read any of them as reference code, and borrow freely:
 
 My personal site, **[tuallen.github.io](https://tuallen.github.io/)**
 ([source](https://github.com/tuallen/tuallen.github.io)), is a separate lineage — a different
-template, no Bulma, its own component system — but the carousel behaviour, the theme toggle and
-the cache-busting approach here were all worked out there first, so it is the closest thing to a
-reference implementation for those.
+template, no Bulma, and its own component system — but it shares the carousel behaviour, theme
+toggle, cache-busting approach, and other web-delivery conventions used across these sites.
 
 If you are starting a paper page from scratch, take Nerfies as the base and treat these as worked
 examples of where to go next. Anything from these repositories carries the CC BY-SA 4.0 terms
